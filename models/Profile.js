@@ -5,10 +5,10 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  homeCountries: {
-    type: String,
+  countries: {
+    type: [String]
   },
-  otherCountries: {
+  graphs: {
     type: [String]
   },
   date: {

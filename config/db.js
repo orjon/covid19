@@ -1,6 +1,8 @@
 // mongoDB connection
 const mongoose = require('mongoose');
 
+mongoose.set('useFindAndModify', false);
+
 // For MongoURI
 const config = require('config');
 const db = config.get('mongoURI');
