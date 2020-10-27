@@ -1,0 +1,228 @@
+$devBorder: 0px;
+
+$breakPoint0: 640px;
+$breakPoint1: 725px;
+$breakPoint2: 1050px;
+$breakPoint3: 1400px;
+
+$breakPointA: 700px;
+$breakPointB: 1100px;
+$breakPointC: 1500px;
+
+$navHeight: 68px;
+$navShadowBlur: 10px;
+
+$colorBackground: rgb(233, 233, 233);
+$colorBackground: rgb(255 , 255, 255);
+
+$colorNavShadow: rgba(0,0,0,0.4);
+$colorNavBurgerBackground: rgba(230, 230, 230, 0.99);
+$colorNavItem: rgb(150, 150, 150);
+$colorNavItemSelected: black;
+
+$colorCardShadow: rgba(0,0,0,0.2);
+
+$colorBannerText: black;
+
+$imageDarken: .1;
+$imageLighten: .1;
+
+$textShadowBlur: 5px;
+$textShadowColor: rgba(0,0,0,0.75);
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  border: $devBorder solid red;
+  &.right {
+    align-items: flex-end;
+  }
+  &.left {
+    align-items: flex-start;
+  }
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
+  &.middle {
+    align-items: center;
+  }
+  &.top {
+    align-items: flex-start;
+  }
+  &.bottom {
+    justify-content: flex-end;
+    align-content: flex-end;
+  }
+  &.spread {
+    align-content: space-between;
+  }
+}
+
+.flexRow {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  border: $devBorder solid blue;
+  &.right {
+    justify-content: flex-end;
+  }
+  &.left {
+    justify-content: flex-start;
+  }
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
+  &.middle {
+    align-items: center;
+    justify-content: center;
+  }
+  &.top {
+    align-items: center;
+    justify-content: center;
+  }
+  &.bottom {
+    align-items: flex-end;
+  }
+}
+
+
+.blue {
+  background-color: blue;
+}
+
+
+.flexWrap {
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.w25 {width: 25%}
+.w30 {width: 30%}
+.w40 {width: 40%}
+.w50 {width: 50%}
+.w60 {width: 60%}
+.w70 {width: 70%}
+.w75 {width: 75%}
+.w80 {width: 80%}
+.w100 {width: 100%}
+
+.h0 {min-height: 0vh}
+.h20 {min-height: 20vh}
+.h25 {min-height: 25vh}
+.h30 {min-height: 30vh}
+.h33 {min-height: 33vh}
+.h40 {min-height: 40vh}
+.h50 {min-height: 50vh}
+.h60 {min-height: 60vh}
+.h66 {min-height: 66vh}
+.h70 {min-height: 70vh}
+.h75 {min-height: 75vh}
+.h80 {min-height: 80vh}
+.h90 {min-height: 90vh}
+.h100 {min-height: 100vh}
+
+.fullHeight {
+  height: 100%;
+}
+
+.indent10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.indent20 {
+  padding-left: 20px;
+  padding-right: 20px;
+  
+}
+.indent40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.gap5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.gap10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.gap20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.gap30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.gap40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+.textLeft{text-align: left;}
+.textCenter{text-align: center;}
+.textRight{text-align: right;}
+.textJustify{text-align: justify;}
+
+.wordBreak {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+
+h1 {
+  border: $devBorder solid #999;
+  font-size: 35pt;
+  text-transform: uppercase;
+}
+
+h2 {
+  border: $devBorder solid #999;
+  font-size: 20pt;
+  letter-spacing: 1.5pt;
+}
+
+h3 {
+  border: $devBorder solid #999;
+  font-size: 15pt;
+}
+
+h4 {
+  border: $devBorder solid #999;
+  font-size: 10pt;
+}
+
+.textSize0 {
+  font-size: 15pt;
+  text-align: justify;
+}
+
+.textSize1 {
+  font-size: 13pt;
+}
+
+.textSize2 {
+  font-size: 12pt;
+}
+
+.textSize3 {
+  font-size: 10pt;
+  text-align: justify;
+}
+
+@media only screen and (min-width: $breakPoint1) {
+  &h1 {font-size: 40pt;}
+  &h2 {font-size: 25pt;}
+  &h3 {font-size: 20pt;}
+  &h4 {font-size: 15pt;}
+  &.textSize0 {font-size: 18pt;}
+  &.textSize1 {font-size: 15pt;}
+  &.textSize2 {font-size: 13pt;}
+  &.textSize3 {font-size: 12pt;}
+}

@@ -1,0 +1,24 @@
+@import 'Variables.scss';
+
+.Logo {
+  border: $devBorder solid cyan;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .LogoImage {
+    height: 40px;
+    margin-right: 10px;
+
+  }
+  .LogoText {
+    text-transform: uppercase;
+    letter-spacing: 1.5pt;
+    font-size: 1rem;
+    display: none;
+    @media only screen and (min-width: 425px) {
+      display: block;
+    }
+  }
+}

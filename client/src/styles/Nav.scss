@@ -1,0 +1,121 @@
+@import 'Variables.scss';
+
+$navBorder: 0px solid rgb(0, 129, 199);
+
+
+
+.TextLink {
+  border: $devBorder solid cyan;
+  cursor: pointer;
+  color: $colorNavItem;
+  &:hover {
+    color: $colorNavItemSelected;
+    // letter-spacing: 0.05pt;
+  }
+}
+
+.Nav {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: $colorBackground;
+  display: flex;
+  flex-direction: row;
+  border: $devBorder solid blue;
+  height: $navHeight;
+  box-shadow: 0px 0px $navShadowBlur $colorNavShadow;
+
+  .navIcon, .navItem {
+    cursor: pointer;
+    color: $colorNavItem;
+    :hover {
+      color: $colorNavItemSelected;
+    }
+    &.selected {
+      color: $colorNavItemSelected;
+    }
+  }
+
+  .navItems {
+    display: none;
+  }
+
+  .navItem {
+    text-transform: uppercase;
+    letter-spacing: 1.5pt;
+    font-size: 0.85rem;
+    // font-size: 10pt;
+    text-decoration: none;
+    }
+
+  .navBurger {
+    border: $devBorder solid cyan;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .burgerMenuList {
+    box-shadow: 0px 0px $navShadowBlur $colorNavShadow;
+    background-color: white;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  
+
+
+}
+
+.scrollUp{
+  border: $devBorder solid cyan;
+  color: $colorNavItem;
+  cursor: pointer;
+  :hover {
+    color: $colorNavItemSelected;
+  }
+}
+
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 320px) {
+
+
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+
+
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+
+}
+
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: $breakPoint1) {
+  .Nav {
+    .navBurger {
+      display: none;
+    }
+    .navItems {
+      border: $devBorder solid cyan;
+      padding: 5px;
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  
+  }
+
+} 
