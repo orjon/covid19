@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://admin:admin123@covid19tracker.1oyua.mongodb.net/<dbname>?retryWrites=true&w=majority",
-  "jwtSecret": "SomeSpecialSecret"
-}
