@@ -1,0 +1,43 @@
+form {
+  border: $devBorder solid green;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .field {
+    width: 100%;
+    max-width: 350px;
+    // height: 20px;
+    border: $devBorder solid lime;
+    margin-top: $spacing1;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      flex: 1;
+    }
+
+    input {
+      height: 30px;
+    }
+
+    button {
+      align-self: flex-end;
+      margin-top: $spacing1;
+      height: 30pt;
+      width: 33%;
+      border: 0;
+      background-color: dodgerblue;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+
+
+}

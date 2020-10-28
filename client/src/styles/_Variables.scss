@@ -5,30 +5,25 @@ $breakPoint1: 725px;
 $breakPoint2: 1050px;
 $breakPoint3: 1400px;
 
-$breakPointA: 700px;
-$breakPointB: 1100px;
-$breakPointC: 1500px;
-
 $navHeight: 68px;
 $navShadowBlur: 10px;
 
-$colorBackground: rgb(233, 233, 233);
 $colorBackground: rgb(255 , 255, 255);
-
+$colorNavBackground: rgba(255 , 255, 255,0.75);
 $colorNavShadow: rgba(0,0,0,0.4);
-$colorNavBurgerBackground: rgba(230, 230, 230, 0.99);
+// $colorNavBurgerBackground: rgba(230, 230, 230, 0.99);
 $colorNavItem: rgb(150, 150, 150);
 $colorNavItemSelected: black;
 
-$colorCardShadow: rgba(0,0,0,0.2);
+// $colorCardShadow: rgba(0,0,0,0.2);
+// $colorBannerText: black;
+// $imageDarken: .1;
+// $imageLighten: .1;
 
-$colorBannerText: black;
+// $textShadowBlur: 5px;
+// $textShadowColor: rgba(0,0,0,0.75);
 
-$imageDarken: .1;
-$imageLighten: .1;
-
-$textShadowBlur: 5px;
-$textShadowColor: rgba(0,0,0,0.75);
+$spacing1: 10px;
 
 .flexColumn {
   display: flex;
@@ -178,14 +173,12 @@ $textShadowColor: rgba(0,0,0,0.75);
 
 h1 {
   border: $devBorder solid #999;
-  font-size: 35pt;
-  text-transform: uppercase;
+  font-size: 1.5rem;
 }
 
 h2 {
   border: $devBorder solid #999;
-  font-size: 20pt;
-  letter-spacing: 1.5pt;
+  font-size: 1.25rem;
 }
 
 h3 {
@@ -216,13 +209,13 @@ h4 {
   text-align: justify;
 }
 
-@media only screen and (min-width: $breakPoint1) {
-  &h1 {font-size: 40pt;}
-  &h2 {font-size: 25pt;}
-  &h3 {font-size: 20pt;}
-  &h4 {font-size: 15pt;}
-  &.textSize0 {font-size: 18pt;}
-  &.textSize1 {font-size: 15pt;}
-  &.textSize2 {font-size: 13pt;}
-  &.textSize3 {font-size: 12pt;}
-}
+// @media only screen and (min-width: $breakPoint1) {
+//   &h1 {font-size: 40pt;}
+//   &h2 {font-size: 25pt;}
+//   &h3 {font-size: 20pt;}
+//   &h4 {font-size: 15pt;}
+//   &.textSize0 {font-size: 18pt;}
+//   &.textSize1 {font-size: 15pt;}
+//   &.textSize2 {font-size: 13pt;}
+//   &.textSize3 {font-size: 12pt;}
+// }

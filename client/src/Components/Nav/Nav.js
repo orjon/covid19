@@ -6,7 +6,7 @@ import NavBurgerMenu from './NavBurgerMenu';
 
 const Nav = () => {
 
-  let navLocations = ['home','login']
+  let navLocations = ['home','register','login']
 
   let navItems = navLocations.map(location => 
     <NavItem key={location} to={location}/>

@@ -2,8 +2,6 @@
 
 $navBorder: 0px solid rgb(0, 129, 199);
 
-
-
 .TextLink {
   border: $devBorder solid cyan;
   cursor: pointer;
@@ -18,7 +16,7 @@ $navBorder: 0px solid rgb(0, 129, 199);
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: $colorBackground;
+  background-color: $colorNavBackground;
   display: flex;
   flex-direction: row;
   border: $devBorder solid blue;

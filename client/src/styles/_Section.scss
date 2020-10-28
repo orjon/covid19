@@ -2,39 +2,44 @@
 
 section {
   border: $devBorder solid lime;
-  margin-top: $navHeight;
   width :100%;
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;;
 
 
-  .sectionContent {
-    padding-left: 0px;
-    padding-right: 0px;
 
-    @media only screen and (min-width: $breakPoint1) {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
+  // .sectionContent {
+  //   padding-left: 0px;
+  //   padding-right: 0px;
 
-
-  .textBanner {
-    color: $colorBannerText;
-    font-size: 30pt;
-    border: $devBorder solid red;
-    text-align: center;
-  }
-
-  .textBannerSub {
-    font-size: 30pt;
-  }
+  //   @media only screen and (min-width: $breakPoint1) {
+  //     padding-left: 20px;
+  //     padding-right: 20px;
+  //   }
+  // }
 
 
-  .textBanner, .textBlock {
-    &.overlayWhite {
-      color: white;
-      text-shadow: 0px 0px $textShadowBlur $textShadowColor;
-    }
-  }
+  // .textBanner {
+  //   color: $colorBannerText;
+  //   font-size: 30pt;
+  //   border: $devBorder solid red;
+  //   text-align: center;
+  // }
+
+  // .textBannerSub {
+  //   font-size: 30pt;
+  // }
+
+
+  // .textBanner, .textBlock {
+  //   &.overlayWhite {
+  //     color: white;
+  //     text-shadow: 0px 0px $textShadowBlur $textShadowColor;
+  //   }
+  // }
 }
 
 

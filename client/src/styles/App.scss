@@ -1,4 +1,5 @@
 @import 'Variables.scss';
+@import 'Section.scss';
 
 * {
 	box-sizing: border-box;
@@ -19,8 +20,18 @@ a {
 }
 
 .App {
+  border: $devBorder solid cyan;
   height: 100vh;
   background-color: $colorBackground;
   background-color: rgb(114, 114, 114);
   background-color: white;
+}
+
+.pageWrapper {
+  width :100%;
+  height: 100%;
+  border: $devBorder solid magenta;
+  padding: $spacing1;
+  padding-top: $navHeight+ $spacing1;
+  padding-bottom: $navHeight+ $spacing1;
 }
