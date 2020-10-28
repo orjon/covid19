@@ -8,12 +8,15 @@ $breakPoint3: 1400px;
 $navHeight: 68px;
 $navShadowBlur: 10px;
 
-$colorBackground: rgb(255 , 255, 255);
-$colorNavBackground: rgba(255 , 255, 255,0.75);
-$colorNavShadow: rgba(0,0,0,0.4);
+$colorBackground: rgb(255, 255, 255);
+$colorNavBackground: rgba(255, 255, 255, 0.75);
+$colorNavShadow: rgba(0, 0, 0, 0.4);
 // $colorNavBurgerBackground: rgba(230, 230, 230, 0.99);
 $colorNavItem: rgb(150, 150, 150);
 $colorNavItemSelected: black;
+
+$colorAlertWarning: rgb(232, 40, 40);
+// $colorAlertWarning: rgb(186, 32, 32);
 
 // $colorCardShadow: rgba(0,0,0,0.2);
 // $colorBannerText: black;
@@ -24,6 +27,9 @@ $colorNavItemSelected: black;
 // $textShadowColor: rgba(0,0,0,0.75);
 
 $spacing1: 10px;
+
+$fontAlert: 16px;
+$fontButton: 16px;
 
 .flexColumn {
   display: flex;
@@ -82,41 +88,85 @@ $spacing1: 10px;
   }
 }
 
-
 .blue {
   background-color: blue;
 }
-
 
 .flexWrap {
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.w25 {width: 25%}
-.w30 {width: 30%}
-.w40 {width: 40%}
-.w50 {width: 50%}
-.w60 {width: 60%}
-.w70 {width: 70%}
-.w75 {width: 75%}
-.w80 {width: 80%}
-.w100 {width: 100%}
+.w25 {
+  width: 25%;
+}
+.w30 {
+  width: 30%;
+}
+.w40 {
+  width: 40%;
+}
+.w50 {
+  width: 50%;
+}
+.w60 {
+  width: 60%;
+}
+.w70 {
+  width: 70%;
+}
+.w75 {
+  width: 75%;
+}
+.w80 {
+  width: 80%;
+}
+.w100 {
+  width: 100%;
+}
 
-.h0 {min-height: 0vh}
-.h20 {min-height: 20vh}
-.h25 {min-height: 25vh}
-.h30 {min-height: 30vh}
-.h33 {min-height: 33vh}
-.h40 {min-height: 40vh}
-.h50 {min-height: 50vh}
-.h60 {min-height: 60vh}
-.h66 {min-height: 66vh}
-.h70 {min-height: 70vh}
-.h75 {min-height: 75vh}
-.h80 {min-height: 80vh}
-.h90 {min-height: 90vh}
-.h100 {min-height: 100vh}
+.h0 {
+  min-height: 0vh;
+}
+.h20 {
+  min-height: 20vh;
+}
+.h25 {
+  min-height: 25vh;
+}
+.h30 {
+  min-height: 30vh;
+}
+.h33 {
+  min-height: 33vh;
+}
+.h40 {
+  min-height: 40vh;
+}
+.h50 {
+  min-height: 50vh;
+}
+.h60 {
+  min-height: 60vh;
+}
+.h66 {
+  min-height: 66vh;
+}
+.h70 {
+  min-height: 70vh;
+}
+.h75 {
+  min-height: 75vh;
+}
+.h80 {
+  min-height: 80vh;
+}
+.h90 {
+  min-height: 90vh;
+}
+.h100 {
+  min-height: 100vh;
+}
 
 .fullHeight {
   height: 100%;
@@ -129,7 +179,6 @@ $spacing1: 10px;
 .indent20 {
   padding-left: 20px;
   padding-right: 20px;
-  
 }
 .indent40 {
   padding-left: 40px;
@@ -159,17 +208,23 @@ $spacing1: 10px;
   padding-bottom: 40px;
 }
 
-
-.textLeft{text-align: left;}
-.textCenter{text-align: center;}
-.textRight{text-align: right;}
-.textJustify{text-align: justify;}
+.textLeft {
+  text-align: left;
+}
+.textCenter {
+  text-align: center;
+}
+.textRight {
+  text-align: right;
+}
+.textJustify {
+  text-align: justify;
+}
 
 .wordBreak {
   word-break: break-word;
   hyphens: auto;
 }
-
 
 h1 {
   border: $devBorder solid #999;

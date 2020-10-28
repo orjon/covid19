@@ -5,22 +5,27 @@ import Home from './Components/Home';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import './styles/App.scss';
+import Alert from './Components/Alert';
+
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <div className='App'>
-      <Nav />
-      <div className='pageWrapper'>
-        <Switch>
-          <Route exact path='/'
-            component = { Home }/>
-          <Route exact path='/login'
-            component = { Login }/>
-         <Route exact path='/register'
-            component = { Register }/>
-        </Switch>
+    <Provider store={store}>
+      <div className='App'>
+        <Nav />
+        <div className='pageWrapper'>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+          </Switch>
+        </div>
+        <Alert />
       </div>
-    </div>
+    </Provider>
   );
 }
 

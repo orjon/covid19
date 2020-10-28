@@ -1,0 +1,30 @@
+@import 'Variables.scss';
+
+.alertWrapper {
+  position: fixed;
+  border: $devBorder solid blue;
+  bottom: 0;
+  width: 100%;
+  padding: $spacing1;
+}
+
+.alert {
+  cursor: pointer;
+  position: relative;
+  height: 30pt;
+  width: 100%;
+  border: 0;
+  font-size: $fontAlert;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .close {
+    right: $spacing1;
+    position: absolute;
+  }
+  &.warning {
+    background-color: $colorAlertWarning;
+    color: white;
+  }
+}

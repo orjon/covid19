@@ -4,6 +4,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: $navHeight + $spacing1;
 
   .title {
     width: 100%;
@@ -33,11 +34,10 @@ form {
       height: 30pt;
       width: 33%;
       border: 0;
+      font-size: $fontButton;
       background-color: dodgerblue;
       border-radius: 5px;
       color: white;
     }
   }
-
-
 }
