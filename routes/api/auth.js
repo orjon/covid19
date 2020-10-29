@@ -30,7 +30,7 @@ router.post(
 
       if (!user) {
         return res
-          .status(400)
+          .status(401)
           .json({ errors: [{ msg: 'Invalid credentials' }] });
       }
 
@@ -39,7 +39,7 @@ router.post(
 
       if (!isMatch) {
         return res
-          .status(400)
+          .status(401)
           .json({ errors: [{ msg: 'Invalid credentials' }] });
       }
 

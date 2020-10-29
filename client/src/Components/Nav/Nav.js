@@ -1,28 +1,41 @@
-import React  from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Logo from './Logo';
 import NavItem from './NavItem';
-import '../../styles/Nav.scss';
 import NavBurgerMenu from './NavBurgerMenu';
+import '../../styles/Nav.scss';
 
-const Nav = () => {
+const Nav = ({ auth: { isAuthenticated, loading } }) => {
+  let guestLocations = ['home', 'register', 'login'];
+  let authLocations = ['home', 'logout'];
 
-  let navLocations = ['home','register','login']
+  let locations = guestLocations;
+  if (isAuthenticated) {
+    locations = authLocations;
+  }
 
-  let navItems = navLocations.map(location => 
-    <NavItem key={location} to={location}/>
-  )
+  let navItems = locations.map((location) => (
+    <NavItem key={location} to={location} />
+  ));
 
-  return(
+  return (
     <nav className='Nav w100 indent10 gap10'>
       <Logo />
-      <div className='navItems'>
-        {navItems}
-      </div>
+      <div className='navItems'>{navItems}</div>
       <div className='navBurger'>
-        <NavBurgerMenu navLocations={navLocations}/>
+        <NavBurgerMenu locations={locations} />
       </div>
     </nav>
-  )
+  );
+};
 
-}
-export default Nav;
+Nav.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, null)(Nav);

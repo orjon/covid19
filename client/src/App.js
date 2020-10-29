@@ -17,7 +17,7 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
+const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -37,6 +37,6 @@ function App() {
       </div>
     </Provider>
   );
-}
+};
 
 export default App;

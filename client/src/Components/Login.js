@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../actions/auth';
+import { setAlert } from '../actions/alert';
 import '../styles/Login.scss';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, setAlert }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -18,12 +19,20 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    login(email, password);
+    if (email === '' && password === '') {
+      setAlert('Please enter email and password!', 'warning');
+    } else if (email === '') {
+      setAlert('Please enter email!', 'warning');
+    } else if (password === '') {
+      setAlert('Please enter password!', 'warning');
+    } else {
+      login(email, password);
+    }
   };
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/favorites' />;
   }
 
   return (
@@ -57,7 +66,7 @@ const Login = ({ login, isAuthenticated }) => {
             <button>Login</button>
           </div>
           <div className='field'>
-            Don't have an account? <Link to='/register'>Register</Link>
+            <Link to='/register'> Don't have an account? Register...</Link>
           </div>
         </form>
       </section>
@@ -66,6 +75,7 @@ const Login = ({ login, isAuthenticated }) => {
 };
 
 Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
@@ -74,4 +84,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { setAlert, login })(Login);
