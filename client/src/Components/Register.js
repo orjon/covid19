@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { setAlert } from '../actions/alert';
-import '../styles/Login.scss';
 import PropTypes from 'prop-types';
+import { setAlert } from '../actions/alert';
+import { register } from '../actions/auth';
+import '../styles/Login.scss';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -23,7 +24,7 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert('Passwords do not match!', 'warning');
     } else {
-      console.log('Success');
+      register({ name: username, email, password });
     }
   };
 
@@ -42,7 +43,6 @@ const Register = ({ setAlert }) => {
               onChange={(e) => fieldChange(e)}
               type='text'
               placeholder='user name'
-              // required
             />
           </div>
           <div className='field email'>
@@ -53,7 +53,6 @@ const Register = ({ setAlert }) => {
               onChange={(e) => fieldChange(e)}
               type='email'
               placeholder='email address'
-              // required
             />
           </div>
           <div className='field password'>
@@ -64,8 +63,6 @@ const Register = ({ setAlert }) => {
               onChange={(e) => fieldChange(e)}
               type='password'
               placeholder='password'
-              minLength='6'
-              required
             />
           </div>
           <div className='field password2'>
@@ -76,8 +73,6 @@ const Register = ({ setAlert }) => {
               onChange={(e) => fieldChange(e)}
               type='password'
               placeholder='password confirmation'
-              minLength='6'
-              required
             />
           </div>
           <div className='field'>
@@ -91,10 +86,11 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 // connect needs any state and actions
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
 
 // TEST submit - without redux
 // const onSubmit = async (e) => {

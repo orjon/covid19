@@ -16,20 +16,18 @@ $colorNavItem: rgb(150, 150, 150);
 $colorNavItemSelected: black;
 
 $colorAlertWarning: rgb(232, 40, 40);
-// $colorAlertWarning: rgb(186, 32, 32);
+$colorAlertSuccess: rgb(50, 200, 0);
 
-// $colorCardShadow: rgba(0,0,0,0.2);
-// $colorBannerText: black;
-// $imageDarken: .1;
-// $imageLighten: .1;
-
-// $textShadowBlur: 5px;
-// $textShadowColor: rgba(0,0,0,0.75);
+$colorButtonRegister: dodgerblue;
+$colorButtonFont: white;
 
 $spacing1: 10px;
 
 $fontAlert: 16px;
 $fontButton: 16px;
+
+$buttonGlow: 5px;
+$buttonTextGlow: 1px;
 
 .flexColumn {
   display: flex;

@@ -23,8 +23,20 @@
     right: $spacing1;
     position: absolute;
   }
+  &.success {
+    background-color: $colorAlertSuccess;
+    color: $colorButtonFont;
+    &:hover {
+      text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
+      box-shadow: 0px 0px $buttonGlow $colorAlertSuccess;
+    }
+  }
   &.warning {
     background-color: $colorAlertWarning;
-    color: white;
+    color: $colorButtonFont;
+    &:hover {
+      text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
+      box-shadow: 0px 0px $buttonGlow $colorAlertWarning;
+    }
   }
 }

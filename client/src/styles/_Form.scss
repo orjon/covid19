@@ -29,15 +29,20 @@ form {
     }
 
     button {
+      outline: none;
       align-self: flex-end;
       margin-top: $spacing1;
       height: 30pt;
       width: 33%;
       border: 0;
       font-size: $fontButton;
-      background-color: dodgerblue;
+      background-color: $colorButtonRegister;
       border-radius: 5px;
-      color: white;
+      color: $colorButtonFont;
+      &:hover {
+        text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
+        box-shadow: 0px 0px $buttonGlow $colorButtonRegister;
+      }
     }
   }
 }
