@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Nav from './Components/Nav/Nav';
 import Home from './Components/Home';
+import Countries from './Components/Countries';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import './styles/App.scss';
@@ -29,6 +30,7 @@ const App = () => {
         <div className='pageWrapper'>
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/countries' component={Countries} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
           </Switch>
