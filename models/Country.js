@@ -10,6 +10,9 @@ const CountrySchema = new mongoose.Schema({
   ISO2: {
     type: String,
   },
+  Flag: {
+    type: String,
+  },
 });
 
 module.exports = Country = mongoose.model('countries', CountrySchema);
