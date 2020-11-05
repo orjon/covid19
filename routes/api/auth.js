@@ -43,7 +43,7 @@ router.post(
           .json({ errors: [{ msg: 'Invalid credentials' }] });
       }
 
-      //Return JWT
+      //if password matched return JWT
       const payload = {
         user: {
           id: user.id,
@@ -65,18 +65,5 @@ router.post(
     }
   }
 );
-
-// @route:  GET api/auth
-// @desc:   test route
-// @access: Public
-router.get('/', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send({ msg: 'Sever error' });
-  }
-});
 
 module.exports = router;

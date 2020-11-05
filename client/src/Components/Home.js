@@ -1,7 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getCountries } from '../actions/countries';
 import '../styles/Home.scss';
 
-const Home = () => {
+const Home = ({ countriesLoaded, getCountries }) => {
+  useEffect(() => {
+    if (!countriesLoaded) {
+      console.log('Getting countries');
+      getCountries();
+    }
+  }, [getCountries, countriesLoaded]);
+
   return (
     <Fragment>
       <div className='Home'>Home Page</div>
@@ -9,4 +18,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => ({
+  countriesLoaded: state.countries.loaded,
+});
+
+export default connect(mapStateToProps, { getCountries })(Home);

@@ -1,13 +1,14 @@
 import React from 'react';
 import { default as UncheckedBox } from '@material-ui/icons/CheckBoxOutlineBlank';
-import { default as CheckBox } from '@material-ui/icons/CheckBox';
+import { default as CheckedBox } from '@material-ui/icons/CheckBox';
 
-const Country = ({ country }) => {
+const Country = ({ country, selectedCountries }) => {
   let countryName = country.Country.split('(')[0]
     .split(',')[0]
     .replace(' and ', ' & ');
 
   let flagSource = country.Flag;
+  let selected = false;
 
   if (countryName === 'ALA Aland Islands') {
     countryName = 'Aland Islands';
@@ -18,11 +19,21 @@ const Country = ({ country }) => {
     countryName = 'North Korea';
   }
 
+  if (selectedCountries.includes(country.ISO2)) {
+    selected = true;
+  }
+
   return (
     <div className='Country'>
-      <div className='checkBox'>
-        <UncheckedBox style={{ fontSize: 18 }} />
-      </div>
+      {selected ? (
+        <div className='checkBox checked'>
+          <CheckedBox style={{ fontSize: 18 }} />
+        </div>
+      ) : (
+        <div className='checkBox unchecked'>
+          <UncheckedBox style={{ fontSize: 18 }} />
+        </div>
+      )}
       <img
         className='flag'
         src={flagSource}

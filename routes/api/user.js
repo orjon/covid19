@@ -3,10 +3,55 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
-const Profile = require('../../models/Profile');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+
+// @route:  POST api/user/profile
+// @desc:   create or update user profile
+// @access: private
+router.post('/profile', auth, async (req, res) => {
+  const { countries, graphs } = req.body;
+
+  // Build profile object
+  const profileFields = {};
+  profileFields.user = req.user.id;
+  if (countries) {
+    //split into arry on comma and remove blank spaces.
+    profileFields.countries = countries
+      .split(',')
+      .map((country) => country.trim());
+  }
+  if (graphs) {
+    //split into arry on comma and remove blank spaces.
+    profileFields.graphs = graphs.split(',').map((graph) => graph.trim());
+  }
+
+  try {
+    user = await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: profileFields },
+      { new: true }
+    );
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route:  GET api/auth
+// @desc:   get User
+// @access: Public
+router.get('/', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send({ msg: 'Sever error' });
+  }
+});
 
 // @route:  POST api/user
 // @desc:   register user

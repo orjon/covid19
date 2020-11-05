@@ -5,7 +5,7 @@ import { COUNTRIES_LOADED, COUNTRIES_FAILED } from './types';
 export const getCountries = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/countries');
-    console.log('Action Countries:', res.data);
+    console.log('Got ' + res.data.length + ' countries.');
     const countries = res.data;
     dispatch({
       type: COUNTRIES_LOADED,

@@ -1,12 +1,27 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getCountries } from '../actions/countries';
 import { login } from '../actions/auth';
 import { setAlert } from '../actions/alert';
 import '../styles/Login.scss';
 
-const Login = ({ login, isAuthenticated, setAlert }) => {
+const Login = ({
+  login,
+  isAuthenticated,
+  countriesLoaded,
+  getCountries,
+  setAlert,
+}) => {
+  //Get country list if not loaded already
+  useEffect(() => {
+    if (!countriesLoaded) {
+      console.log('Getting countries');
+      getCountries();
+    }
+  }, [getCountries, countriesLoaded]);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -32,7 +47,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/favorites' />;
+    return <Redirect to='/' />;
   }
 
   return (
@@ -82,6 +97,9 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  countriesLoaded: state.countries.loaded,
 });
 
-export default connect(mapStateToProps, { setAlert, login })(Login);
+export default connect(mapStateToProps, { setAlert, login, getCountries })(
+  Login
+);

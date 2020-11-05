@@ -1,12 +1,27 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getCountries } from '../actions/countries';
 import { setAlert } from '../actions/alert';
 import { register } from '../actions/auth';
 import '../styles/Login.scss';
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = ({
+  setAlert,
+  register,
+  isAuthenticated,
+  countriesLoaded,
+  getCountries,
+}) => {
+  //Get country list if not loaded already
+  useEffect(() => {
+    if (!countriesLoaded) {
+      console.log('Getting countries');
+      getCountries();
+    }
+  }, [getCountries, countriesLoaded]);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -100,10 +115,13 @@ Register.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  countriesLoaded: state.countries.loaded,
 });
 
 // connect needs any state and actions
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register, getCountries })(
+  Register
+);
 
 // TEST submit - without redux
 // const onSubmit = async (e) => {
