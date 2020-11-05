@@ -63,7 +63,7 @@ const Login = ({ login, isAuthenticated, setAlert }) => {
             />
           </div>
           <div className='field'>
-            <button>Login</button>
+            <button className='right'>Login</button>
           </div>
           <div className='field'>
             <Link to='/register'> Don't have an account? Register...</Link>

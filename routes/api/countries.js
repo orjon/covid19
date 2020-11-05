@@ -20,16 +20,22 @@ const addCountryFlag = async (country) => {
   await Country.findOneAndUpdate(
     { ISO2: country.alpha2Code },
     { $set: { Flag: country.flag } },
-    { new: true, upsert: true }
+    { new: true }
   );
 };
 
 //Get list of countries
 router.get('/', async (req, res) => {
   try {
-    let response1 = await axios.get('https://api.covid19api.com/countries');
-    console.log(`Got ${response1.data.length} countries from Covid19 server`);
-    let countries = response1.data;
+    let availableCountries = await axios.get(
+      'https://api.covid19api.com/countries'
+    );
+    console.log(
+      `Got ${availableCountries.data.length} countries from Covid19 server`
+    );
+    let countries = availableCountries.data.sort(function (a, b) {
+      return a.Country.localeCompare(b.Country);
+    });
 
     Promise.all(countries.map((country) => updateCountry(country)));
 
@@ -47,7 +53,9 @@ router.get('/', async (req, res) => {
       })
     );
 
-    res.send(response2.data);
+    let stuffToSend = await Country.find();
+
+    res.send(stuffToSend);
   } catch (error) {
     console.error(error.msg);
     res.status(500).send('Server error');

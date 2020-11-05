@@ -12,4 +12,5 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 export const LOGOUT = 'LOGOUT';
 
-export const GET_COUNTRIES = 'GET_COUNTRIES';
+export const COUNTRIES_LOADED = 'COUNTRIES_LOADED';
+export const COUNTRIES_FAILED = 'COUNTRIES_FAILED';

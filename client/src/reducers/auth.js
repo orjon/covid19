@@ -15,7 +15,7 @@ const initialState = {
   user: null,
 };
 
-const Authentication = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -52,4 +52,4 @@ const Authentication = (state = initialState, action) => {
   }
 };
 
-export default Authentication;
+export default auth;

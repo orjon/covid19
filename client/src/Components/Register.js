@@ -82,7 +82,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             />
           </div>
           <div className='field'>
-            <button type='submit'>Register</button>
+            <button type='submit' className='right'>
+              Register
+            </button>
           </div>
         </form>
       </section>

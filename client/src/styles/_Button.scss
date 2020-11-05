@@ -1,0 +1,21 @@
+@import 'Variables.scss';
+
+button {
+  outline: none;
+  margin-top: $spacing1;
+  height: 30pt;
+  width: 33%;
+  border: 0;
+  font-size: $fontButton;
+  border-radius: 5px;
+  color: $colorButtonFont;
+  &.right {
+    align-self: flex-end;
+  }
+  &.center {
+    align-self: center;
+  }
+  &:hover {
+    text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
+  }
+}

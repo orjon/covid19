@@ -1,3 +1,5 @@
+@import 'Button.scss';
+
 form {
   border: $devBorder solid green;
   width: 100%;
@@ -14,7 +16,6 @@ form {
   .field {
     width: 100%;
     max-width: 350px;
-    // height: 20px;
     border: $devBorder solid lime;
     margin-top: $spacing1;
     display: flex;
@@ -29,18 +30,8 @@ form {
     }
 
     button {
-      outline: none;
-      align-self: flex-end;
-      margin-top: $spacing1;
-      height: 30pt;
-      width: 33%;
-      border: 0;
-      font-size: $fontButton;
       background-color: $colorButtonRegister;
-      border-radius: 5px;
-      color: $colorButtonFont;
       &:hover {
-        text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
         box-shadow: 0px 0px $buttonGlow $colorButtonRegister;
       }
     }
