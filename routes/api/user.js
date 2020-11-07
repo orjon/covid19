@@ -7,25 +7,42 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-// @route:  POST api/user/profile
+// @route:  POST api/user/countries
 // @desc:   create or update user profile
 // @access: private
-router.post('/profile', auth, async (req, res) => {
-  const { countries, graphs } = req.body;
+router.post('/countries', auth, async (req, res) => {
+  const { countries } = req.body;
 
   // Build profile object
   const profileFields = {};
   profileFields.user = req.user.id;
-  if (countries) {
-    //split into arry on comma and remove blank spaces.
-    profileFields.countries = countries
-      .split(',')
-      .map((country) => country.trim());
+  profileFields.countries = countries
+    .split(',')
+    .map((country) => country.trim());
+
+  try {
+    user = await User.findByIdAndUpdate(
+      { _id: req.user.id },
+      { $set: profileFields },
+      { new: true }
+    );
+    res.json(user);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
   }
-  if (graphs) {
-    //split into arry on comma and remove blank spaces.
-    profileFields.graphs = graphs.split(',').map((graph) => graph.trim());
-  }
+});
+
+// @route:  POST api/user/graphs
+// @desc:   create or update user profile
+// @access: private
+router.post('/graphs', auth, async (req, res) => {
+  const { graphs } = req.body;
+
+  // Build profile object
+  const profileFields = {};
+  profileFields.user = req.user.id;
+  profileFields.graphs = graphs.split(',').map((graph) => graph.trim());
 
   try {
     user = await User.findByIdAndUpdate(

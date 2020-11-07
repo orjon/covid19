@@ -1,33 +1,34 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGOUT,
+  // REGISTER_SUCCESS,
+  // REGISTER_FAIL,
+  // LOGIN_SUCCESS,
+  // LOGIN_FAIL,
+  // USER_LOADED,
+  // AUTH_ERROR,
+  // LOGOUT,
+  AUTHORIZED,
+  UNAUTHORIZED,
 } from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
   loaded: false,
-  currentUser: null,
+  // currentUser: null,
 };
 
 const auth = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case USER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        loaded: true,
-        currentUser: payload,
-      };
-    case REGISTER_SUCCESS:
-    case LOGIN_SUCCESS:
+    // case USER_LOADED:
+    //   return {
+    //     ...state,
+    //     isAuthenticated: true,
+    //     loaded: true,
+    //     // currentUser: payload,
+    //   };
+    case AUTHORIZED:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -35,17 +36,14 @@ const auth = (state = initialState, action) => {
         isAuthenticated: true,
         loaded: true,
       };
-    case REGISTER_FAIL:
-    case AUTH_ERROR:
-    case LOGIN_FAIL:
-    case LOGOUT:
+    case UNAUTHORIZED:
       localStorage.removeItem('token');
       return {
         ...state,
         token: null,
         isAuthenticated: false,
         loaded: false,
-        currentUser: null,
+        // currentUser: null,
       };
 
     default:

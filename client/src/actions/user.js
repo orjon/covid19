@@ -10,6 +10,8 @@ import {
   AUTH_ERROR,
   LOGOUT,
   PROFILE_UPDATE,
+  AUTHORIZED,
+  UNAUTHORIZED,
 } from './types';
 
 //Update user profile
@@ -72,6 +74,9 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     const res = await axios.post('/api/user', body, config);
     dispatch({
       type: REGISTER_SUCCESS,
+    });
+    dispatch({
+      type: AUTHORIZED,
       payload: res.data,
     });
     dispatch(loadUser());
@@ -83,6 +88,9 @@ export const register = ({ name, email, password }) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, 'warning')));
     }
 
+    dispatch({
+      type: UNAUTHORIZED,
+    });
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -103,6 +111,9 @@ export const login = (email, password) => async (dispatch) => {
     const res = await axios.post('/api/auth', body, config);
     dispatch({
       type: LOGIN_SUCCESS,
+    });
+    dispatch({
+      type: AUTHORIZED,
       payload: res.data,
     });
     dispatch(loadUser());
@@ -115,6 +126,9 @@ export const login = (email, password) => async (dispatch) => {
     }
 
     dispatch({
+      type: UNAUTHORIZED,
+    });
+    dispatch({
       type: LOGIN_FAIL,
     });
   }
@@ -122,6 +136,9 @@ export const login = (email, password) => async (dispatch) => {
 
 //Logout user
 export const logout = () => (dispatch) => {
+  dispatch({
+    type: UNAUTHORIZED,
+  });
   dispatch({
     type: LOGOUT,
   });

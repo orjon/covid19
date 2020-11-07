@@ -66,7 +66,7 @@ const Countries = ({ getCountries, user, countryList, countriesLoaded }) => {
 const mapStateToProps = (state) => ({
   countriesLoaded: state.countries.loaded,
   countryList: state.countries.countryList,
-  user: state.user.user,
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { getCountries })(Countries);
