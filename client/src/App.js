@@ -7,7 +7,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import './styles/App.scss';
 import Alert from './Components/Alert';
-import { loadUser } from './actions/user';
+import { loadUser } from './actions/currentUser';
 import setAuthToken from './utils/setAuthToken';
 
 // Redux

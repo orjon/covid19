@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import alert from './alert';
+import alerts from './alerts';
 import auth from './auth';
-import user from './user';
-import countries from './countries';
+import currentUser from './currentUser';
+import countryList from './countryList';
 
 export default combineReducers({
-  alert,
+  alerts,
   auth,
-  countries,
-  user,
+  countryList,
+  currentUser,
 });

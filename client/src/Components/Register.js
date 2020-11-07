@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getCountries } from '../actions/countries';
-import { setAlert } from '../actions/alert';
-import { register } from '../actions/user';
+import { getCountries } from '../actions/countryList';
+import { setAlert } from '../actions/alerts';
+import { register } from '../actions/currentUser';
 import '../styles/Login.scss';
 
 const Register = ({
@@ -46,7 +46,7 @@ const Register = ({
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/favorites' />;
+    return <Redirect to='/' />;
   }
 
   return (
@@ -115,7 +115,7 @@ Register.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  countriesLoaded: state.countries.loaded,
+  countriesLoaded: state.countryList.loaded,
 });
 
 // connect needs any state and actions

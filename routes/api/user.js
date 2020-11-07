@@ -12,21 +12,25 @@ const config = require('config');
 // @access: private
 router.post('/countries', auth, async (req, res) => {
   const { countries } = req.body;
+  console.log('countries', countries);
 
   // Build profile object
-  const profileFields = {};
-  profileFields.user = req.user.id;
-  profileFields.countries = countries
-    .split(',')
-    .map((country) => country.trim());
+  // const profileFields = {};
+  // profileFields.user = req.user.id;
+  // profileFields.countries = countries.map((country) => country.trim());
 
   try {
+    // user = await User.findByIdAndUpdate(
+    //   { _id: req.user.id },
+    //   { $set: profileFields },
+    //   { new: true }
+    // );
     user = await User.findByIdAndUpdate(
       { _id: req.user.id },
-      { $set: profileFields },
+      { countries: countries },
       { new: true }
     );
-    res.json(user);
+    res.json(countries);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');

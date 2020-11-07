@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getCountries } from '../actions/countries';
-import { login } from '../actions/user';
-import { setAlert } from '../actions/alert';
+import { getCountries } from '../actions/countryList';
+import { login } from '../actions/currentUser';
+import { setAlert } from '../actions/alerts';
 import '../styles/Login.scss';
 
 const Login = ({
@@ -97,7 +97,7 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  countriesLoaded: state.countries.loaded,
+  countriesLoaded: state.countryList.loaded,
 });
 
 export default connect(mapStateToProps, { setAlert, login, getCountries })(

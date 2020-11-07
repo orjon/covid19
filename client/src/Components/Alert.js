@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { default as IconClose } from '@material-ui/icons/Close';
-import { closeAlert } from '../actions/alert';
+import { closeAlert } from '../actions/alerts';
 import '../styles/Alert.scss';
 
 const Alert = ({ alerts, closeAlert }) =>
@@ -27,7 +27,7 @@ Alert.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  alerts: state.alert,
+  alerts: state.alerts,
 });
 
 export default connect(mapStateToProps, { closeAlert })(Alert);

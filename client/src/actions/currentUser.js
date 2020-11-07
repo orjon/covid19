@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setAlert } from './alert';
+import { setAlert } from './alerts';
 import setAuthToken from '../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
@@ -9,26 +9,27 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
-  PROFILE_UPDATE,
+  COUNTRIES_UPDATE,
   AUTHORIZED,
   UNAUTHORIZED,
 } from './types';
 
-//Update user profile
-export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
+//Update user countries
+export const updateCountries = (countries) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify({ countries, graphs });
+  const body = JSON.stringify({ countries });
+  console.log('json:', body);
 
   try {
-    const res = await axios.post('/api/user/profile', body, config);
-    // console.log(res.data);
+    const res = await axios.post('/api/user/countries', body, config);
+    console.log('response: ', res.data);
     dispatch({
-      type: PROFILE_UPDATE,
+      type: COUNTRIES_UPDATE,
       payload: res.data,
     });
   } catch (error) {
@@ -37,6 +38,54 @@ export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
     });
   }
 };
+
+//Update user graphs
+// export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
+//   const config = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   };
+
+//   const body = JSON.stringify({ countries, graphs });
+
+//   try {
+//     const res = await axios.post('/api/user/profile', body, config);
+//     // console.log(res.data);
+//     dispatch({
+//       type: PROFILE_UPDATE,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: AUTH_ERROR,
+//     });
+//   }
+// };
+
+// //Update user profile
+// export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
+//   const config = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   };
+
+//   const body = JSON.stringify({ countries, graphs });
+
+//   try {
+//     const res = await axios.post('/api/user/profile', body, config);
+//     // console.log(res.data);
+//     dispatch({
+//       type: PROFILE_UPDATE,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: AUTH_ERROR,
+//     });
+//   }
+// };
 
 //Load user
 export const loadUser = () => async (dispatch) => {
@@ -142,4 +191,5 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+  dispatch(setAlert('User logged out!', 'success'));
 };

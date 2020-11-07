@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setAlert } from './alert';
+import { setAlert } from './alerts';
 import { PROFILE_UPDATE, PROFILE_ERROR } from './types';
 
 //Update user profile

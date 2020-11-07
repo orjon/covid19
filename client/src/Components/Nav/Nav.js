@@ -31,7 +31,7 @@ const Nav = ({ auth: { isAuthenticated, loading } }) => {
 };
 
 Nav.propTypes = {
-  user: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

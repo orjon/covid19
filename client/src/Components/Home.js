@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getCountries } from '../actions/countries';
+import { getCountries } from '../actions/countryList';
 import '../styles/Home.scss';
 
 const Home = ({ countriesLoaded, getCountries }) => {
@@ -19,7 +19,7 @@ const Home = ({ countriesLoaded, getCountries }) => {
 };
 
 const mapStateToProps = (state) => ({
-  countriesLoaded: state.countries.loaded,
+  countriesLoaded: state.countryList.loaded,
 });
 
 export default connect(mapStateToProps, { getCountries })(Home);

@@ -1,18 +1,18 @@
 import { COUNTRIES_LOADED, COUNTRIES_FAILED } from '../actions/types';
 
 const initialState = {
-  countryList: [],
+  countries: [],
   loaded: false,
 };
 
-const countries = (state = initialState, action) => {
+const countryList = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case COUNTRIES_LOADED:
       return {
         ...state,
-        countryList: payload,
+        countries: payload,
         loaded: true,
       };
     case COUNTRIES_FAILED:
@@ -25,4 +25,4 @@ const countries = (state = initialState, action) => {
   }
 };
 
-export default countries;
+export default countryList;

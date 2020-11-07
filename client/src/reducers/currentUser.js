@@ -6,6 +6,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
+  COUNTRIES_UPDATE,
 } from '../actions/types';
 
 const initialState = {
@@ -19,7 +20,7 @@ const initialState = {
   __v: undefined,
 };
 
-const user = (state = initialState, action) => {
+const currentUser = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -34,6 +35,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         loaded: true,
+      };
+    case COUNTRIES_UPDATE:
+      return {
+        ...state,
+        countries: payload,
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:
@@ -56,4 +62,4 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default user;
+export default currentUser;
