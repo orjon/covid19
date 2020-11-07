@@ -29,7 +29,7 @@ router.post('/profile', auth, async (req, res) => {
 
   try {
     user = await User.findByIdAndUpdate(
-      req.user.id,
+      { _id: req.user.id },
       { $set: profileFields },
       { new: true }
     );

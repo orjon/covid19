@@ -7,7 +7,7 @@ import NavBurgerMenu from './NavBurgerMenu';
 import '../../styles/Nav.scss';
 
 const Nav = ({ auth: { isAuthenticated, loading } }) => {
-  let guestLocations = ['home', 'register', 'login'];
+  let guestLocations = ['home', 'countries', 'register', 'login'];
   let authLocations = ['home', 'countries', 'logout'];
 
   let locations = guestLocations;
@@ -31,7 +31,7 @@ const Nav = ({ auth: { isAuthenticated, loading } }) => {
 };
 
 Nav.propTypes = {
-  auth: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

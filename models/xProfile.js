@@ -7,9 +7,11 @@ const ProfileSchema = new mongoose.Schema({
   },
   countries: {
     type: [String],
+    default: [],
   },
   graphs: {
     type: [String],
+    default: [],
   },
   date: {
     type: Date,

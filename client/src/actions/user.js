@@ -9,7 +9,32 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
+  PROFILE_UPDATE,
 } from './types';
+
+//Update user profile
+export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const body = JSON.stringify({ countries, graphs });
+
+  try {
+    const res = await axios.post('/api/user/profile', body, config);
+    // console.log(res.data);
+    dispatch({
+      type: PROFILE_UPDATE,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
 
 //Load user
 export const loadUser = () => async (dispatch) => {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
-const Profile = require('../../models/Profile');
+const Profile = require('../../models/xProfile');
 
 // @route:  POST api/profile
 // @desc:   create or update user profile
@@ -44,10 +44,10 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// @route:  GET api/profile/me
+// @route:  GET api/profile
 // @desc:   my profile
 // @access: private
-router.get('/me', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCountries } from '../actions/countries';
-import { login } from '../actions/auth';
+import { login } from '../actions/user';
 import { setAlert } from '../actions/alert';
 import '../styles/Login.scss';
 

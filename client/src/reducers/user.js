@@ -9,43 +9,46 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
-  isAuthenticated: null,
   loaded: false,
-  currentUser: null,
+  countries: [],
+  graphs: [],
+  _id: undefined,
+  name: undefined,
+  email: undefined,
+  date: undefined,
+  __v: undefined,
 };
 
-const auth = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case USER_LOADED:
       return {
         ...state,
-        isAuthenticated: true,
+        ...payload,
         loaded: true,
-        currentUser: payload,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem('token', payload.token);
       return {
         ...state,
-        ...payload,
-        isAuthenticated: true,
         loaded: true,
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
-      localStorage.removeItem('token');
       return {
         ...state,
-        token: null,
-        isAuthenticated: false,
         loaded: false,
-        currentUser: null,
+        countries: [],
+        graphs: [],
+        _id: undefined,
+        name: undefined,
+        email: undefined,
+        date: undefined,
+        __v: undefined,
       };
 
     default:
@@ -53,4 +56,4 @@ const auth = (state = initialState, action) => {
   }
 };
 
-export default auth;
+export default user;

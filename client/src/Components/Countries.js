@@ -4,12 +4,7 @@ import { getCountries } from '../actions/countries';
 import Country from './Country';
 import '../styles/Countries.scss';
 
-const Countries = ({
-  getCountries,
-  userCountries,
-  countryList,
-  countriesLoaded,
-}) => {
+const Countries = ({ getCountries, user, countryList, countriesLoaded }) => {
   //Load countries
   useEffect(() => {
     if (!countriesLoaded) {
@@ -18,21 +13,33 @@ const Countries = ({
     }
   }, [getCountries, countriesLoaded]);
 
+  let userCountries = [];
+
+  if (user && user.countries.length > 0) {
+    userCountries = user.countries;
+  }
+
   //State to hold selected countries
   const [selectedCountries, setSelectedCountries] = useState(userCountries);
 
-  let list = undefined;
+  const toggleCountry = (countryISO2) => {
+    if (selectedCountries.includes(countryISO2)) {
+      setSelectedCountries(
+        selectedCountries.filter((country) => country !== countryISO2)
+      );
+    } else {
+      setSelectedCountries([...selectedCountries, countryISO2]);
+    }
+  };
 
-  console.log(selectedCountries);
+  let countrylist = undefined;
 
   if (countryList.length > 0) {
-    list = countryList.map((country) => {
+    countryList = countryList.map((country) => {
       return (
-        <Country
-          key={country._id}
-          country={country}
-          selectedCountries={selectedCountries}
-        />
+        <div key={country._id} onClick={() => toggleCountry(country.ISO2)}>
+          <Country country={country} selectedCountries={selectedCountries} />
+        </div>
       );
     });
   }
@@ -40,9 +47,9 @@ const Countries = ({
   return (
     <Fragment>
       <div className='Countries'>Countries Page</div>
-      {list ? (
+      {countryList ? (
         <form>
-          <div className='CountryList'>{list}</div>
+          <div className='CountryList'>{countryList}</div>
           <div className='field'>
             <button type='submit' className='center'>
               Save
@@ -59,7 +66,7 @@ const Countries = ({
 const mapStateToProps = (state) => ({
   countriesLoaded: state.countries.loaded,
   countryList: state.countries.countryList,
-  userCountries: state.auth.user.countries,
+  user: state.user.user,
 });
 
 export default connect(mapStateToProps, { getCountries })(Countries);

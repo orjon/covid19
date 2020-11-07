@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getCountries } from '../actions/countries';
 import { setAlert } from '../actions/alert';
-import { register } from '../actions/auth';
+import { register } from '../actions/user';
 import '../styles/Login.scss';
 
 const Register = ({
