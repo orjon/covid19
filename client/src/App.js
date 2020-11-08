@@ -5,6 +5,7 @@ import Home from './Components/Home';
 import Countries from './Components/Countries';
 import Login from './Components/Login';
 import Register from './Components/Register';
+import Stats from './Components/Stats';
 import './styles/App.scss';
 import Alert from './Components/Alert';
 import { loadUser } from './actions/currentUser';
@@ -33,6 +34,7 @@ const App = () => {
             <Route exact path='/countries' component={Countries} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
+            <Route exact path='/stats' component={Stats} />
           </Switch>
         </div>
         <Alert />

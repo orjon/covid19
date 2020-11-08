@@ -19,7 +19,7 @@ const Country = ({ country, selectedCountries }) => {
     countryName = 'North Korea';
   }
 
-  if (selectedCountries.includes(country.ISO2)) {
+  if (selectedCountries.includes(country.Slug)) {
     selected = true;
   }
 

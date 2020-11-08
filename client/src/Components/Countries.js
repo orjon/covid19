@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getCountries } from '../actions/countryList';
 import { updateCountries } from '../actions/currentUser';
 import Country from './Country';
@@ -27,13 +28,13 @@ const Countries = ({
   //State to hold selected countries
   const [selectedCountries, setSelectedCountries] = useState([]);
 
-  const toggleCountry = (countryISO2) => {
-    if (selectedCountries.includes(countryISO2)) {
+  const toggleCountry = (countrySlug) => {
+    if (selectedCountries.includes(countrySlug)) {
       setSelectedCountries(
-        selectedCountries.filter((country) => country !== countryISO2)
+        selectedCountries.filter((country) => country !== countrySlug)
       );
     } else {
-      setSelectedCountries([...selectedCountries, countryISO2]);
+      setSelectedCountries([...selectedCountries, countrySlug]);
     }
   };
 
@@ -42,16 +43,23 @@ const Countries = ({
   if (countryList.countries.length > 0) {
     countrySelectionList = countryList.countries.map((country) => {
       return (
-        <div key={country._id} onClick={() => toggleCountry(country.ISO2)}>
+        <div key={country._id} onClick={() => toggleCountry(country.Slug)}>
           <Country country={country} selectedCountries={selectedCountries} />
         </div>
       );
     });
   }
 
+  // Redirect if not logged in
+  if (!currentUser.loaded) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <Fragment>
-      <div className='Countries'>Countries Page</div>
+      <div className='Countries'>
+        Selected Countries: {selectedCountries.length}
+      </div>
       {countrySelectionList ? (
         <form
           onSubmit={(e) => {
