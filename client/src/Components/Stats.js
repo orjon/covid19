@@ -1,32 +1,24 @@
 import React, { useEffect } from 'react';
 import { getCountryStats } from '../actions/stats';
 import { connect } from 'react-redux';
+import Chart from './Chart';
 import PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import '../styles/Stats.scss';
 
-const Stats = ({ stats, getCountryStats }) => {
-  let country = 'south-africa';
+const Stats = ({ stats, getCountryStats, currentUser }) => {
+  let country = 'italy';
+
+  let data = `${country} statistics loading...`;
+  let dataFormatted = undefined;
 
   useEffect(() => {
     getCountryStats(country);
   }, [country, getCountryStats]);
 
-  let data = `${country} statistics loading...`;
-  let dataD3 = [];
-
   if (stats[country]) {
-    data = stats[country].map((day) => {
-      return (
-        <div key={day.Date}>
-          Date: {day.Date}
-          Confirmed: {day.Confirmed}
-          Deaths: {day.Deaths}
-          Recovered: {day.Recovered}
-          Active: {day.Active}
-        </div>
-      );
-    });
-    dataD3 = stats[country].map((day) => ({
+    data = country;
+    dataFormatted = stats[country].map((day) => ({
+      Country: day.Country,
       Date: day.Date,
       Confirmed: day.Confirmed,
       Deaths: day.Deaths,
@@ -35,17 +27,10 @@ const Stats = ({ stats, getCountryStats }) => {
     }));
   }
 
-  d3.select('.d3')
-    .selectAll('p')
-    .data(dataD3)
-    .enter()
-    .append('p')
-    .text((dta) => dta.Deaths);
-
   return (
     <div>
-      {/* {data} */}
-      <div className='d3'></div>
+      {data}
+      {dataFormatted && <Chart data={dataFormatted} />}
     </div>
   );
 };
@@ -56,6 +41,7 @@ Stats.propTypes = {
 
 const mapStateToProps = (state) => ({
   stats: state.stats,
+  currentUser: state.currentUser,
 });
 
 export default connect(mapStateToProps, { getCountryStats })(Stats);

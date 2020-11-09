@@ -8,7 +8,7 @@ import '../../styles/Nav.scss';
 
 const Nav = ({ auth: { isAuthenticated, loading } }) => {
   let guestLocations = ['home', 'stats', 'register', 'login'];
-  let authLocations = ['home', 'countries', 'logout'];
+  let authLocations = ['home', 'stats', 'countries', 'logout'];
 
   let locations = guestLocations;
   if (isAuthenticated) {
