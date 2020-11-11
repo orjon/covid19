@@ -145,8 +145,6 @@ router.post(
 // @access: private
 router.delete('/', auth, async (req, res) => {
   try {
-    // Remove profile
-    await Profile.findOneAndRemove({ user: req.user.id });
     // Remove User
     await User.findOneAndRemove({ _id: req.user.id });
 

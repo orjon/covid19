@@ -43,7 +43,7 @@ const Countries = ({
   if (countryList.countries.length > 0) {
     countrySelectionList = countryList.countries.map((country) => {
       return (
-        <div key={country._id} onClick={() => toggleCountry(country.Slug)}>
+        <div key={country._id} onClick={() => toggleCountry(country.slug)}>
           <Country country={country} selectedCountries={selectedCountries} />
         </div>
       );

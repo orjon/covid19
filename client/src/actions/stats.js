@@ -2,17 +2,17 @@ import axios from 'axios';
 import { STATS_LOADED, STATS_FAILED } from './types';
 
 //get country list
-export const getCountryStats = (country) => async (dispatch) => {
+export const getCountryStats = ({ country }) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `https://api.covid19api.com/total/country/${country}`
-    );
-    // console.log('Got ' + res.data.length + ' entries for ' + country);
-    // console.log(res.data);
-    const stats = res.data;
+    // console.log('getting stats for: ' + country);
+    const res = await axios.get(`api/data/${country}`);
+    const countryStats = res.data;
+    // countryStats.countryName = countries.find(
+    //   (country) => country.slug === countryStats.slug
+    // ).country;
     dispatch({
       type: STATS_LOADED,
-      payload: { [country]: stats },
+      payload: countryStats,
     });
   } catch (error) {
     console.error(error);

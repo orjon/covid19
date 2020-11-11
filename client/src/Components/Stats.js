@@ -1,36 +1,62 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { getCountries } from '../actions/countryList';
 import { getCountryStats } from '../actions/stats';
 import { connect } from 'react-redux';
-import Chart from './Chart';
+// import Chart from './Charts/Chart';
+import CountryComparisonChart from './Charts/CountryComparisonChart';
 import PropTypes from 'prop-types';
 import '../styles/Stats.scss';
 
-const Stats = ({ stats, getCountryStats, currentUser }) => {
-  let country = 'italy';
+const Stats = ({
+  countryList,
+  stats,
+  getCountries,
+  getCountryStats,
+  currentUser,
+}) => {
+  let userCountries = currentUser.countries;
+  let userCountriesValid = false;
 
-  let data = `${country} statistics loading...`;
-  let dataFormatted = undefined;
+  let loading =
+    'Loading ' + currentUser.countries.length + ' country statistics...';
 
+  //Load countryList
   useEffect(() => {
-    getCountryStats(country);
-  }, [country, getCountryStats]);
+    if (!countryList.loaded) {
+      console.log('Getting countries');
+      getCountries();
+    }
+  }, [getCountries, countryList]);
 
-  if (stats[country]) {
-    data = country;
-    dataFormatted = stats[country].map((day) => ({
-      Country: day.Country,
-      Date: day.Date,
-      Confirmed: day.Confirmed,
-      Deaths: day.Deaths,
-      Recovered: day.Recovered,
-      Active: day.Active,
-    }));
+  //Load stats for usercountries
+  useEffect(() => {
+    if (countryList.loaded) {
+      Promise.all(
+        userCountries.map((country) => {
+          getCountryStats({ country });
+        })
+      );
+    }
+  }, [countryList, userCountries, getCountryStats]);
+
+  if (stats.countries.length === userCountries.length) {
+    userCountriesValid = stats.countries.filter(
+      (country) => country.dataAvailable === true
+    );
   }
 
   return (
     <div>
-      {data}
-      {dataFormatted && <Chart data={dataFormatted} />}
+      {userCountriesValid ? (
+        <Fragment>
+          Chart!
+          <CountryComparisonChart countriesData={userCountriesValid} />
+          {/* <Chart type='total' countryData={stats} /> */}
+          {/* <Chart type='capita' countryData={stats} /> */}
+        </Fragment>
+      ) : (
+        <Fragment>{loading}</Fragment>
+      )}
     </div>
   );
 };
@@ -42,6 +68,9 @@ Stats.propTypes = {
 const mapStateToProps = (state) => ({
   stats: state.stats,
   currentUser: state.currentUser,
+  countryList: state.countryList,
 });
 
-export default connect(mapStateToProps, { getCountryStats })(Stats);
+export default connect(mapStateToProps, { getCountries, getCountryStats })(
+  Stats
+);

@@ -3,11 +3,12 @@ import { default as UncheckedBox } from '@material-ui/icons/CheckBoxOutlineBlank
 import { default as CheckedBox } from '@material-ui/icons/CheckBox';
 
 const Country = ({ country, selectedCountries }) => {
-  let countryName = country.Country.split('(')[0]
+  let countryName = country.country
+    .split('(')[0]
     .split(',')[0]
     .replace(' and ', ' & ');
 
-  let flagSource = country.Flag;
+  let flagSource = country.flag;
   let selected = false;
 
   if (countryName === 'ALA Aland Islands') {
@@ -15,11 +16,11 @@ const Country = ({ country, selectedCountries }) => {
   } else if (countryName === 'Netherlands Antilles') {
     flagSource =
       'https://www.orjon.com/covid19/images/flag/netherlands_antilles.svg';
-  } else if (country.Slug === 'korea-north') {
+  } else if (country.slug === 'korea-north') {
     countryName = 'North Korea';
   }
 
-  if (selectedCountries.includes(country.Slug)) {
+  if (selectedCountries.includes(country.slug)) {
     selected = true;
   }
 
@@ -33,7 +34,7 @@ const Country = ({ country, selectedCountries }) => {
           <img
             className='flag'
             src={flagSource}
-            alt={`Flag of ${country.Country}`}
+            alt={`Flag of ${country.country}`}
           />
           <p className='countryName'>{countryName}</p>
         </div>
@@ -45,7 +46,7 @@ const Country = ({ country, selectedCountries }) => {
           <img
             className='flag'
             src={flagSource}
-            alt={`Flag of ${country.Country}`}
+            alt={`Flag of ${country.country}`}
           />
           <p className='countryName'>{countryName}</p>
         </div>

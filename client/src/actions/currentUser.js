@@ -102,6 +102,11 @@ export const loadUser = () => async (dispatch) => {
       type: USER_LOADED,
       payload: res.data,
     });
+    let payloadObject = { token: localStorage.token };
+    dispatch({
+      type: AUTHORIZED,
+      payload: payloadObject,
+    });
   } catch (error) {
     dispatch({
       type: AUTH_ERROR,

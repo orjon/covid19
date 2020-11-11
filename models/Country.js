@@ -1,17 +1,24 @@
 const mongoose = require('mongoose');
 
 const CountrySchema = new mongoose.Schema({
-  Country: {
+  country: {
     type: String,
   },
-  Slug: {
+  slug: {
     type: String,
   },
-  ISO2: {
+  iso2: {
     type: String,
   },
-  Flag: {
+  flag: {
     type: String,
+  },
+  population: {
+    type: Number,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
 });
 

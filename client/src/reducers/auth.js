@@ -1,7 +1,8 @@
 import { AUTHORIZED, UNAUTHORIZED } from '../actions/types';
 
 const initialState = {
-  token: localStorage.getItem('token'),
+  // token: localStorage.getItem('token'),
+  token: null,
   isAuthenticated: null,
   loaded: false,
 };

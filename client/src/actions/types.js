@@ -23,4 +23,4 @@ export const GRAPHS_UPDATE = 'GRAPHS_UPDATE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 
 export const STATS_LOADED = 'STATS_LOADED';
-export const STATS_FAILED = 'STA|TS_FAILED';
+export const STATS_FAILED = 'STATS_FAILED';
