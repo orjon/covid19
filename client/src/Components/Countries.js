@@ -6,6 +6,8 @@ import { updateCountries } from '../actions/currentUser';
 import Country from './Country';
 import '../styles/Countries.scss';
 
+const maxSelectedCountries = 10;
+
 const Countries = ({
   currentUser,
   countryList,
@@ -28,12 +30,22 @@ const Countries = ({
   //State to hold selected countries
   const [selectedCountries, setSelectedCountries] = useState([]);
 
+  let listFull = false;
+
+  if (selectedCountries.length >= maxSelectedCountries) {
+    listFull = true;
+  } else {
+    listFull = false;
+  }
+
   const toggleCountry = (countrySlug) => {
+    // Remove if already in list
     if (selectedCountries.includes(countrySlug)) {
       setSelectedCountries(
         selectedCountries.filter((country) => country !== countrySlug)
       );
-    } else {
+      // Add to list if total does not exceed 10
+    } else if (!listFull) {
       setSelectedCountries([...selectedCountries, countrySlug]);
     }
   };
@@ -43,8 +55,16 @@ const Countries = ({
   if (countryList.countries.length > 0) {
     countrySelectionList = countryList.countries.map((country) => {
       return (
-        <div key={country._id} onClick={() => toggleCountry(country.slug)}>
-          <Country country={country} selectedCountries={selectedCountries} />
+        <div
+          key={country._id}
+          className='countryContainer'
+          onClick={() => toggleCountry(country.slug)}
+        >
+          <Country
+            country={country}
+            selectedCountries={selectedCountries}
+            listFull={listFull}
+          />
         </div>
       );
     });
@@ -64,9 +84,6 @@ const Countries = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            console.log('Submitting: ', selectedCountries);
-            console.log(typeof selectedCountries);
-
             updateCountries(selectedCountries);
           }}
         >

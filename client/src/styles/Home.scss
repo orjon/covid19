@@ -1,2 +1,10 @@
 @import 'Variables.scss';
 @import 'Section.scss';
+
+.Home {
+  position: relative;
+  background: url('../images/coronaHeroImage.jpg') no-repeat center center/cover;
+  height: 100vh;
+  margin: -$spacing3;
+  margin: -($navHeight + $spacing3);
+}

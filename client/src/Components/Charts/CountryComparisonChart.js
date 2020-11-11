@@ -4,6 +4,21 @@ import { connect } from 'react-redux';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import '../../styles/Chart.scss';
 
+const colorOpacity = 1;
+
+const randomColor = [
+  `rgba(255,0,0,${colorOpacity})`,
+  `rgba(0,255,0,${colorOpacity})`,
+  `rgba(0,0,175,${colorOpacity})`,
+  `rgba(255,195,0,${colorOpacity})`,
+  `rgba(144,0,255,${colorOpacity})`,
+  `rgba(0,114,255,${colorOpacity})`,
+  `rgba(255,125,0,${colorOpacity})`,
+  `rgba(50,150,00,${colorOpacity})`,
+  `rgba(225,0,225,${colorOpacity})`,
+  `rgba(0,255,255,${colorOpacity})`,
+];
+
 const CountryComparisonChart = ({ countriesData }) => {
   let multiplier = 1;
 
@@ -18,12 +33,12 @@ const CountryComparisonChart = ({ countriesData }) => {
 
   // console.log(availableCountries);
 
-  let chartDataSets = countriesData.map((countryData) => ({
+  let chartDataSets = countriesData.map((countryData, index) => ({
     label: countryData.countrySlug,
     data: countryData.data.confirmed,
-    backgroundColor: 'red',
+    backgroundColor: randomColor[index],
     fill: false,
-    borderColor: 'red',
+    borderColor: randomColor[index],
     borderWidth: 1,
     pointRadius: 1,
   }));
@@ -37,7 +52,9 @@ const CountryComparisonChart = ({ countriesData }) => {
     // labels: countriesData[0].data.date.map((date) =>
     //   dayjs(date).format('DD.MMM.YYYY')
     // ),
-    labels: countriesData[0].data.date,
+    labels: countriesData[0].data.date.map((date) =>
+      dayjs(date).format('DD-MMM-YYYY')
+    ),
     datasets: chartDataSets,
   };
 
@@ -54,6 +71,15 @@ const CountryComparisonChart = ({ countriesData }) => {
         <Line
           data={chartData}
           options={{
+            scales: {
+              xAxes: [
+                {
+                  ticks: {
+                    minRotation: 90,
+                  },
+                },
+              ],
+            },
             // title: {
             //   display: true,
             //   text: chartData.country,

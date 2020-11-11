@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getCountries } from '../actions/countryList';
 import '../styles/Home.scss';
+import heroImage from '../images/coronaHeroImage.jpg';
 
 const Home = ({ countriesLoaded, getCountries }) => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const Home = ({ countriesLoaded, getCountries }) => {
 
   return (
     <Fragment>
-      <div className='Home'>Home Page</div>
+      <div className='Home'></div>
     </Fragment>
   );
 };

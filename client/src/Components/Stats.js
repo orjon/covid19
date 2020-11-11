@@ -49,7 +49,6 @@ const Stats = ({
     <div>
       {userCountriesValid ? (
         <Fragment>
-          Chart!
           <CountryComparisonChart countriesData={userCountriesValid} />
           {/* <Chart type='total' countryData={stats} /> */}
           {/* <Chart type='capita' countryData={stats} /> */}

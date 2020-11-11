@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { default as UncheckedBox } from '@material-ui/icons/CheckBoxOutlineBlank';
 import { default as CheckedBox } from '@material-ui/icons/CheckBox';
 
-const Country = ({ country, selectedCountries }) => {
+const Country = ({ country, selectedCountries, listFull }) => {
   let countryName = country.country
     .split('(')[0]
     .split(',')[0]
@@ -27,8 +27,8 @@ const Country = ({ country, selectedCountries }) => {
   return (
     <Fragment>
       {selected ? (
-        <div className='Country checked'>
-          <div className='checkBox'>
+        <div className='Country'>
+          <div className={`checkBox checked ${listFull}`}>
             <CheckedBox style={{ fontSize: 18 }} />
           </div>
           <img
@@ -39,8 +39,8 @@ const Country = ({ country, selectedCountries }) => {
           <p className='countryName'>{countryName}</p>
         </div>
       ) : (
-        <div className='Country unchecked'>
-          <div className='checkBox'>
+        <div className={`Country ${listFull}`}>
+          <div className={`checkBox unchecked ${listFull}`}>
             <UncheckedBox style={{ fontSize: 18 }} />
           </div>
           <img

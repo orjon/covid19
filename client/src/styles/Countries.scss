@@ -5,12 +5,18 @@
 .CountryList {
   border: $devBorder solid magenta;
   width: 100%;
-  padding: 0 $spacing2;
+  padding: 0 $spacing3;
 
   display: grid;
   grid-template-columns: 1fr;
+  // grid-template-columns: repeat(auto-filt, minmax(250px, 1fr));
   grid-column-gap: $spacing1;
   grid-row-gap: $spacing1;
+
+  .countryContainer {
+    display: flex;
+    justify-content: center;
+  }
 
   .Country {
     cursor: pointer;
@@ -21,11 +27,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    &.unchecked {
-      color: black;
-    }
-    &.checked {
-      color: dodgerblue;
+    &.true {
+      &:hover {
+        color: #999;
+      }
     }
     &:hover {
       color: dodgerblue;
@@ -36,6 +41,12 @@
       flex-direction: column;
       align-items: flex-end;
       margin-right: $spacing1;
+      // &.unchecked {
+      //   color: #777;
+      // }
+      &.checked {
+        color: dodgerblue;
+      }
     }
     .flag {
       width: 24px;
