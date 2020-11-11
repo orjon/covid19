@@ -20,8 +20,12 @@ $colorNavItemSelected: black;
 $colorAlertWarning: rgb(232, 40, 40);
 $colorAlertSuccess: rgb(50, 200, 0);
 
-$colorButtonRegister: dodgerblue;
-$colorButtonFont: white;
+// $colorButtonRegister: mediumblue;
+// $colorButtonLogin: green;
+// $colorButtonGuest: orange;
+$colorButton: white;
+$colorButtonGlow: red;
+$colorButtonFont: black;
 
 $spacing1: 5px;
 $spacing2: 10px;
@@ -265,14 +269,3 @@ h4 {
   font-size: 10pt;
   text-align: justify;
 }
-
-// @media only screen and (min-width: $breakPoint1) {
-//   &h1 {font-size: 40pt;}
-//   &h2 {font-size: 25pt;}
-//   &h3 {font-size: 20pt;}
-//   &h4 {font-size: 15pt;}
-//   &.textSize0 {font-size: 18pt;}
-//   &.textSize1 {font-size: 15pt;}
-//   &.textSize2 {font-size: 13pt;}
-//   &.textSize3 {font-size: 12pt;}
-// }

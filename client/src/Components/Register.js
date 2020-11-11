@@ -97,7 +97,7 @@ const Register = ({
             />
           </div>
           <div className='field'>
-            <button type='submit' className='right'>
+            <button type='submit' className='right register'>
               Register
             </button>
           </div>

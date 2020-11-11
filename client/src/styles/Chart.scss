@@ -18,13 +18,13 @@
     font-size: $fontButton;
     color: grey;
     &.selected {
-      background-color: $colorButtonRegister;
+      background-color: $colorButton;
       color: $colorButtonFont;
     }
     &:hover {
       color: $colorButtonFont;
-      box-shadow: 0px 0px $buttonGlow $colorButtonRegister;
-      background-color: $colorButtonRegister;
+      box-shadow: 0px 0px $buttonGlow $colorButtonGlow;
+      background-color: $colorButton;
     }
     &.first {
       border-radius: 5px 0 0 5px;

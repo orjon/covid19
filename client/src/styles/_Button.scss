@@ -2,13 +2,14 @@
 
 button {
   outline: none;
-  margin-top: $spacing1;
   height: 30pt;
   width: 33%;
   border: 0;
   font-size: $fontButton;
+  border: 1px solid black;
   border-radius: 5px;
   color: $colorButtonFont;
+  background-color: $colorButton;
   &.right {
     align-self: flex-end;
   }
@@ -16,6 +17,9 @@ button {
     align-self: center;
   }
   &:hover {
-    text-shadow: 0px 0px $buttonTextGlow $colorButtonFont;
+    text-shadow: 0px 0px $buttonTextGlow red;
+    box-shadow: 0px 0px $buttonGlow $colorButtonGlow;
+    border: 1px solid red;
+    color: red;
   }
 }

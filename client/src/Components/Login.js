@@ -78,7 +78,7 @@ const Login = ({
             />
           </div>
           <div className='field'>
-            <button className='right'>Login</button>
+            <button className='login right'>Login</button>
           </div>
           <div className='field'>
             <Link to='/register'> Don't have an account? Register...</Link>
