@@ -30,9 +30,9 @@ const Home = ({ countriesLoaded, getCountries }) => {
             >
               Register
             </button>
-            <button onClick={() => history.push('/guest')} className='guest'>
+            {/* <button onClick={() => history.push('/guest')} className='guest'>
               Guest
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
