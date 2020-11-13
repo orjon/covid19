@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Logo from './Logo';
@@ -6,7 +6,7 @@ import NavItem from './NavItem';
 import NavBurgerMenu from './NavBurgerMenu';
 import '../../styles/Nav.scss';
 
-const Nav = ({ auth: { isAuthenticated, loading } }) => {
+const Nav = ({ isHome, auth: { isAuthenticated, loading } }) => {
   let guestLocations = ['stats', 'register', 'login'];
   let authLocations = ['stats', 'countries', 'logout'];
 
@@ -22,10 +22,14 @@ const Nav = ({ auth: { isAuthenticated, loading } }) => {
   return (
     <nav className='Nav w100 indent10 gap10'>
       <Logo />
-      <div className='navItems'>{navItems}</div>
-      <div className='navBurger'>
-        <NavBurgerMenu locations={locations} />
-      </div>
+      {!isHome && (
+        <Fragment>
+          <div className='navItems'>{navItems}</div>
+          <div className='navBurger'>
+            <NavBurgerMenu locations={locations} />
+          </div>
+        </Fragment>
+      )}
     </nav>
   );
 };

@@ -1,7 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
 import { login } from '../actions/currentUser';
 import { setAlert } from '../actions/alerts';
@@ -13,7 +14,9 @@ const Login = ({
   countriesLoaded,
   getCountries,
   setAlert,
+  isLoaded,
 }) => {
+  const history = useHistory();
   //Get country list if not loaded already
   useEffect(() => {
     if (!countriesLoaded) {
@@ -46,45 +49,51 @@ const Login = ({
   };
 
   // Redirect if logged in
-  if (isAuthenticated) {
-    return <Redirect to='/' />;
+  if (isLoaded) {
+    return <Redirect to='/stats' />;
   }
 
   return (
     <Fragment>
-      <section className='Login'>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div className='title'>
-            <h1>Login</h1>
-          </div>
-          <div className='field email'>
-            <input
-              id='email'
-              name='email'
-              value={email}
-              onChange={(e) => fieldChange(e)}
-              type='email'
-              placeholder='email address'
-            />
-          </div>
-          <div className='field password'>
-            <input
-              id='password'
-              name='password'
-              value={password}
-              onChange={(e) => fieldChange(e)}
-              type='password'
-              placeholder='password'
-            />
-          </div>
-          <div className='field'>
-            <button className='login right'>Login</button>
-          </div>
-          <div className='field'>
-            <Link to='/register'> Don't have an account? Register...</Link>
-          </div>
-        </form>
-      </section>
+      <Nav isHome='true' />
+      <div className='pageWrapper'>
+        <section className='Login'>
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div className='title'>
+              <h1>Login</h1>
+            </div>
+            <div className='field email'>
+              <input
+                id='email'
+                name='email'
+                value={email}
+                onChange={(e) => fieldChange(e)}
+                type='email'
+                placeholder='email address'
+              />
+            </div>
+            <div className='field password'>
+              <input
+                id='password'
+                name='password'
+                value={password}
+                onChange={(e) => fieldChange(e)}
+                type='password'
+                placeholder='password'
+              />
+            </div>
+            <div className='buttonWrapper'>
+              <button className='login'>Login</button>
+              <button
+                onClick={() => history.push('/register')}
+                className='register faint'
+              >
+                or Register?
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     </Fragment>
   );
 };
@@ -96,6 +105,7 @@ Login.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  isLoaded: state.currentUser.loaded,
   isAuthenticated: state.auth.isAuthenticated,
   countriesLoaded: state.countryList.loaded,
 });

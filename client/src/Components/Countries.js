@@ -1,8 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Nav from './Nav/Nav';
+import { setAlert } from '../actions/alerts';
 import { getCountries } from '../actions/countryList';
 import { updateCountries } from '../actions/currentUser';
+import { countryNameFromSlug } from '../utils/helpers';
 import Country from './Country';
 import '../styles/Countries.scss';
 
@@ -13,7 +16,9 @@ const Countries = ({
   countryList,
   getCountries,
   updateCountries,
+  setAlert,
 }) => {
+  let countries = countryList.countries;
   //Load countryList
   useEffect(() => {
     if (!countryList.loaded) {
@@ -39,14 +44,37 @@ const Countries = ({
   }
 
   const toggleCountry = (countrySlug) => {
+    let countryName = countryNameFromSlug(countrySlug, countries);
     // Remove if already in list
     if (selectedCountries.includes(countrySlug)) {
       setSelectedCountries(
         selectedCountries.filter((country) => country !== countrySlug)
       );
+      setAlert(
+        `${countryName} removed. ${selectedCountries.length - 1}/10`,
+        'success'
+      );
       // Add to list if total does not exceed 10
     } else if (!listFull) {
       setSelectedCountries([...selectedCountries, countrySlug]);
+      if (selectedCountries.length + 1 === 10) {
+        setAlert(
+          `${countryName} added. Maximum reached: ${
+            selectedCountries.length + 1
+          }/10`,
+          'warning'
+        );
+      } else {
+        setAlert(
+          `${countryName} added. ${selectedCountries.length + 1}/10`,
+          'success'
+        );
+      }
+    } else {
+      setAlert(
+        `Maximum countries reached. ${selectedCountries.length}/10`,
+        'warning'
+      );
     }
   };
 
@@ -77,26 +105,44 @@ const Countries = ({
 
   return (
     <Fragment>
-      <div className='Countries'>
-        Selected Countries: {selectedCountries.length}
+      <Nav />
+      <div className='pageWrapper'>
+        <div className='Countries'>
+          {/* Selected Countries to Compare: {selectedCountries.length} */}
+        </div>
+        {countrySelectionList ? (
+          <form
+            className='longForm'
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateCountries(selectedCountries);
+              console.log('redirect!');
+              return <Redirect to='/stats' />;
+            }}
+          >
+            <div className='header'>
+              <h1>Select countries (max 10)</h1>
+            </div>
+            <div className='buttonWrapper'>
+              <button type='submit' className='center'>
+                Save
+              </button>
+            </div>
+            <div className='CountryList'>{countrySelectionList}</div>
+            <div className='buttonWrapper'>
+              <button type='submit' className='center'>
+                Save
+              </button>
+            </div>
+          </form>
+        ) : (
+          <form>
+            <div className='header'>
+              <h1>Loading countries...</h1>
+            </div>
+          </form>
+        )}
       </div>
-      {countrySelectionList ? (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            updateCountries(selectedCountries);
-          }}
-        >
-          <div className='CountryList'>{countrySelectionList}</div>
-          <div className='field'>
-            <button type='submit' className='center'>
-              Save
-            </button>
-          </div>
-        </form>
-      ) : (
-        <div>Loading...</div>
-      )}
     </Fragment>
   );
 };
@@ -106,6 +152,8 @@ const mapStateToProps = (state) => ({
   currentUser: state.currentUser,
 });
 
-export default connect(mapStateToProps, { getCountries, updateCountries })(
-  Countries
-);
+export default connect(mapStateToProps, {
+  setAlert,
+  getCountries,
+  updateCountries,
+})(Countries);

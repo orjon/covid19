@@ -4,18 +4,20 @@ import { NavLink } from 'react-router-dom';
 import '../../styles/Logo.scss';
 
 const Logo = () => {
-
-  return(
+  return (
     <div className='Logo'>
-      <NavLink to='/' activeClassName='selected'>
-        <div className='flexRow center'>
-          <img className='LogoImage' src={LogoImage} alt='Covid19 Tracker App logo'/>
-          <div className='LogoText'>Covid19 Tracker</div>
-        </div>
-      </NavLink>
-    </div> 
-  )
-}
-
+      {/* <NavLink to='/' activeClassName='selected'> */}
+      <div className='flexRow center'>
+        <img
+          className='LogoImage'
+          src={LogoImage}
+          alt='Covid19 Tracker App logo'
+        />
+        <div className='LogoText'>Covid19 Tracker</div>
+      </div>
+      {/* </NavLink> */}
+    </div>
+  );
+};
 
 export default Logo;

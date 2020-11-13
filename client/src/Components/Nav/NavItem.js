@@ -14,7 +14,7 @@ const NavItem = ({ to, logout }) => {
   if (link === 'logout') {
     return (
       <NavLink
-        to='#!'
+        to='/'
         className='navItem indent10'
         activeClassName='selected'
         onClick={logout}

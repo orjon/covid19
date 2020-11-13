@@ -27,7 +27,7 @@ const Country = ({ country, selectedCountries, listFull }) => {
   return (
     <Fragment>
       {selected ? (
-        <div className='Country'>
+        <div className='Country checked '>
           <div className={`checkBox checked ${listFull}`}>
             <CheckedBox style={{ fontSize: 18 }} />
           </div>

@@ -79,7 +79,7 @@ $navBorder: 0px solid rgb(0, 129, 199);
 }
 
 /* TABLET LANDSCAPE / DESKTOP */
-@media only screen and (min-width: $breakPoint1) {
+@media only screen and (min-width: $breakPoint0) {
   .Nav {
     .navBurger {
       display: none;

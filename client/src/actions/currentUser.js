@@ -22,6 +22,8 @@ export const updateCountries = (countries) => async (dispatch) => {
     },
   };
 
+  countries.sort();
+
   const body = JSON.stringify({ countries });
   console.log('json:', body);
 
@@ -38,54 +40,6 @@ export const updateCountries = (countries) => async (dispatch) => {
     });
   }
 };
-
-//Update user graphs
-// export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
-//   const config = {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   };
-
-//   const body = JSON.stringify({ countries, graphs });
-
-//   try {
-//     const res = await axios.post('/api/user/profile', body, config);
-//     // console.log(res.data);
-//     dispatch({
-//       type: PROFILE_UPDATE,
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: AUTH_ERROR,
-//     });
-//   }
-// };
-
-// //Update user profile
-// export const updateProfile = ({ countries, graphs }) => async (dispatch) => {
-//   const config = {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   };
-
-//   const body = JSON.stringify({ countries, graphs });
-
-//   try {
-//     const res = await axios.post('/api/user/profile', body, config);
-//     // console.log(res.data);
-//     dispatch({
-//       type: PROFILE_UPDATE,
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: AUTH_ERROR,
-//     });
-//   }
-// };
 
 //Load user
 export const loadUser = () => async (dispatch) => {
@@ -163,9 +117,9 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post('/api/auth', body, config);
-    dispatch({
-      type: LOGIN_SUCCESS,
-    });
+    // dispatch({
+    //   type: LOGIN_SUCCESS,
+    // });
     dispatch({
       type: AUTHORIZED,
       payload: res.data,

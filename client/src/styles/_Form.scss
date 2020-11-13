@@ -1,4 +1,4 @@
-@import 'Button.scss';
+@import 'Buttons.scss';
 
 form {
   border: $devBorder solid green;
@@ -7,10 +7,19 @@ form {
   flex-direction: column;
   align-items: center;
   margin-bottom: $navHeight + $spacing1;
+  &.longForm {
+    margin-bottom: $spacing3 * 2;
+  }
 
   .title {
     width: 100%;
     max-width: 350px;
+  }
+
+  .header {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
   }
 
   .field {
@@ -18,15 +27,22 @@ form {
     max-width: 350px;
     border: $devBorder solid lime;
     margin-top: $spacing1;
-    display: flex;
-    flex-direction: column;
-
-    label {
-      flex: 1;
-    }
 
     input {
+      width: 100%;
       height: 30px;
+    }
+  }
+
+  .buttonWrapper {
+    width: 100%;
+    max-width: 350px;
+    border: $devBorder solid lime;
+    margin: $spacing1 0;
+    display: flex;
+    justify-content: space-between;
+    .center {
+      margin: 0 auto;
     }
   }
 }

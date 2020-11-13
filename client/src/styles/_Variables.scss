@@ -10,21 +10,28 @@ $breakPoint5: 1925px;
 $navHeight: 68px;
 $navShadowBlur: 10px;
 
+// $colorRed: rgb(232, 40, 40);
+$colorRed: red;
+$colorGreen: rgb(50, 200, 0);
+
 $colorBackground: rgb(255, 255, 255);
-$colorNavBackground: rgba(255, 255, 255, 0.9);
+$colorNavBackground: rgba(255, 255, 255, 1);
 $colorNavShadow: rgba(0, 0, 0, 0.4);
 // $colorNavBurgerBackground: rgba(230, 230, 230, 0.99);
 $colorNavItem: rgb(150, 150, 150);
 $colorNavItemSelected: black;
 
-$colorAlertWarning: rgb(232, 40, 40);
-$colorAlertSuccess: rgb(50, 200, 0);
+$colorAlertWarning: $colorRed;
+$colorAlertWarningText: white;
+
+$colorAlertSuccess: white;
+$colorAlertSuccessText: black;
 
 // $colorButtonRegister: mediumblue;
 // $colorButtonLogin: green;
 // $colorButtonGuest: orange;
 $colorButton: white;
-$colorButtonGlow: red;
+$colorSelected: $colorRed;
 $colorButtonFont: black;
 
 $spacing1: 5px;
@@ -40,7 +47,7 @@ $buttonTextGlow: 1px;
 .flexColumn {
   display: flex;
   flex-direction: column;
-  border: $devBorder solid red;
+  border: $devBorder solid $colorRed;
   &.right {
     align-items: flex-end;
   }

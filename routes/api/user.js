@@ -14,47 +14,13 @@ router.post('/countries', auth, async (req, res) => {
   const { countries } = req.body;
   console.log('countries', countries);
 
-  // Build profile object
-  // const profileFields = {};
-  // profileFields.user = req.user.id;
-  // profileFields.countries = countries.map((country) => country.trim());
-
   try {
-    // user = await User.findByIdAndUpdate(
-    //   { _id: req.user.id },
-    //   { $set: profileFields },
-    //   { new: true }
-    // );
     user = await User.findByIdAndUpdate(
       { _id: req.user.id },
       { countries: countries },
       { new: true }
     );
     res.json(countries);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server error');
-  }
-});
-
-// @route:  POST api/user/graphs
-// @desc:   create or update user profile
-// @access: private
-router.post('/graphs', auth, async (req, res) => {
-  const { graphs } = req.body;
-
-  // Build profile object
-  const profileFields = {};
-  profileFields.user = req.user.id;
-  profileFields.graphs = graphs.split(',').map((graph) => graph.trim());
-
-  try {
-    user = await User.findByIdAndUpdate(
-      { _id: req.user.id },
-      { $set: profileFields },
-      { new: true }
-    );
-    res.json(user);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');

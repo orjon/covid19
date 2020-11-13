@@ -1,6 +1,6 @@
 @import 'Variables.scss';
 @import 'Section.scss';
-@import 'Button.scss';
+@import 'Buttons.scss';
 
 .Home {
   position: relative;
@@ -19,6 +19,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .buttonWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: $devBorder solid green;
+      width: 100%;
+    }
     button {
       margin: $spacing2 0;
       width: 100%;

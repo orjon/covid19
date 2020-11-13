@@ -8,10 +8,10 @@
   padding: 0 $spacing3;
 
   display: grid;
-  grid-template-columns: 1fr;
-  // grid-template-columns: repeat(auto-filt, minmax(250px, 1fr));
+  // grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-column-gap: $spacing1;
-  grid-row-gap: $spacing1;
+  grid-row-gap: $spacing2;
 
   .countryContainer {
     display: flex;
@@ -21,19 +21,23 @@
   .Country {
     cursor: pointer;
     justify-self: center;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
     border: $devBorder solid grey;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    &.checked {
+      color: $colorSelected;
+    }
     &.true {
       &:hover {
         color: #999;
       }
     }
     &:hover {
-      color: dodgerblue;
+      color: $colorSelected;
     }
 
     .checkBox {
@@ -45,7 +49,7 @@
       //   color: #777;
       // }
       &.checked {
-        color: dodgerblue;
+        color: $colorSelected;
       }
     }
     .flag {
@@ -56,45 +60,10 @@
       margin-right: $spacing1;
     }
     .countryName {
+      font-size: 0.85rem;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-  }
-}
-
-@media screen and (min-width: ($breakPoint0)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media screen and (min-width: ($breakPoint1)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (min-width: ($breakPoint2)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (min-width: ($breakPoint3)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (min-width: ($breakPoint4)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  }
-}
-
-@media screen and (min-width: ($breakPoint5)) {
-  .CountryList {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }

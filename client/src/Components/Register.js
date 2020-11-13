@@ -1,10 +1,12 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
 import { setAlert } from '../actions/alerts';
 import { register } from '../actions/currentUser';
+
 import '../styles/Login.scss';
 
 const Register = ({
@@ -14,6 +16,7 @@ const Register = ({
   countriesLoaded,
   getCountries,
 }) => {
+  const history = useHistory();
   //Get country list if not loaded already
   useEffect(() => {
     if (!countriesLoaded) {
@@ -46,63 +49,72 @@ const Register = ({
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/countries' />;
   }
 
   return (
     <Fragment>
-      <section className='Register'>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div className='title'>
-            <h1>Register new user</h1>
-          </div>
-          <div className='field username'>
-            <input
-              id='username'
-              name='username'
-              value={username}
-              onChange={(e) => fieldChange(e)}
-              type='text'
-              placeholder='user name'
-            />
-          </div>
-          <div className='field email'>
-            <input
-              id='email'
-              name='email'
-              value={email}
-              onChange={(e) => fieldChange(e)}
-              type='email'
-              placeholder='email address'
-            />
-          </div>
-          <div className='field password'>
-            <input
-              id='password'
-              name='password'
-              value={password}
-              onChange={(e) => fieldChange(e)}
-              type='password'
-              placeholder='password'
-            />
-          </div>
-          <div className='field password2'>
-            <input
-              id='password2'
-              name='password2'
-              value={password2}
-              onChange={(e) => fieldChange(e)}
-              type='password'
-              placeholder='password confirmation'
-            />
-          </div>
-          <div className='field'>
-            <button type='submit' className='right register'>
-              Register
-            </button>
-          </div>
-        </form>
-      </section>
+      <Nav isHome='true' />
+      <div className='pageWrapper'>
+        <section className='Register'>
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div className='title'>
+              <h1>Register new user</h1>
+            </div>
+            <div className='field username'>
+              <input
+                id='username'
+                name='username'
+                value={username}
+                onChange={(e) => fieldChange(e)}
+                type='text'
+                placeholder='user name'
+              />
+            </div>
+            <div className='field email'>
+              <input
+                id='email'
+                name='email'
+                value={email}
+                onChange={(e) => fieldChange(e)}
+                type='email'
+                placeholder='email address'
+              />
+            </div>
+            <div className='field password'>
+              <input
+                id='password'
+                name='password'
+                value={password}
+                onChange={(e) => fieldChange(e)}
+                type='password'
+                placeholder='password'
+              />
+            </div>
+            <div className='field password2'>
+              <input
+                id='password2'
+                name='password2'
+                value={password2}
+                onChange={(e) => fieldChange(e)}
+                type='password'
+                placeholder='password confirmation'
+              />
+            </div>
+            <div className='buttonWrapper'>
+              <button type='submit' className='register'>
+                Register
+              </button>
+              <button
+                onClick={() => history.push('/login')}
+                className='login faint'
+              >
+                or Login?
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     </Fragment>
   );
 };

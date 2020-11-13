@@ -12,7 +12,6 @@ import {
 const initialState = {
   loaded: false,
   countries: [],
-  graphs: [],
   _id: undefined,
   name: undefined,
   email: undefined,

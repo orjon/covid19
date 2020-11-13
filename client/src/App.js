@@ -27,16 +27,13 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className='App'>
-        <Nav />
-        <div className='pageWrapper'>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route exact path='/countries' component={Countries} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/stats' component={Stats} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/countries' component={Countries} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/stats' component={Stats} />
+        </Switch>
         <Alert />
       </div>
     </Provider>
