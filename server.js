@@ -19,7 +19,7 @@ app.use('/api/stats', require('./routes/api/stats'));
 app.use('/api/countries', require('./routes/api/countries'));
 
 //Serve static assests in production
-if (process.env.NODe_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   //set static folder
   app.use(express.static('client/build'));
 
