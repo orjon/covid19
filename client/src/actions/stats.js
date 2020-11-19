@@ -9,7 +9,7 @@ import {
 } from './types';
 
 //setMode
-export const setMode = (mode) => async (dispatch) => {
+export const setMeasurementMode = (mode) => async (dispatch) => {
   try {
     dispatch({
       type: MODE_CHANGE,
@@ -24,7 +24,7 @@ export const setMode = (mode) => async (dispatch) => {
 };
 
 //setField
-export const setField = (field) => async (dispatch) => {
+export const setDataField = (field) => async (dispatch) => {
   try {
     dispatch({
       type: FIELD_CHANGE,
@@ -53,17 +53,46 @@ export const deleteCountryStats = () => async (dispatch) => {
 };
 
 //get all selected country stats
-export const getCountriesStats = ({ countries }) => async (dispatch) => {
+export const getStats = ({ userCountries }) => async (dispatch) => {
+  const getCountryStats = async (country) => {
+    const res = await axios.get(`api/stats/${country}`);
+    return res.data;
+  };
+
   try {
-    // console.log('getting stats for: ' + country);
-    const res = await axios.get(`api/stats/${countries}`);
-    const countriesStats = res.data;
-    // countryStats.countryName = countries.find(
-    //   (country) => country.slug === countryStats.slug
-    // ).country;
+    let responses = await Promise.all(
+      userCountries.map((country) => getCountryStats(country))
+    );
+
+    responses.sort(function (a, b) {
+      if (a.countrySlug < b.countrySlug) {
+        return -1;
+      }
+      if (a.countrySlug > b.countrySlug) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    });
+
+    let notAvailable = responses
+      .filter((country) => country.dataAvailable === false)
+      .map((country) => country.countrySlug);
+
+    let countriesStats = responses.filter(
+      (country) => country.dataAvailable === true
+    );
+
+    let payloadObject = {
+      notAvailable: notAvailable,
+      countriesStats: countriesStats,
+    };
+
+    console.log('getCountries', payloadObject);
+
     dispatch({
       type: MULTI_STATS_LOADED,
-      payload: countriesStats,
+      payload: payloadObject,
     });
   } catch (error) {
     console.error(error);
@@ -74,22 +103,22 @@ export const getCountriesStats = ({ countries }) => async (dispatch) => {
 };
 
 //get individual country stats
-export const getCountryStats = ({ country }) => async (dispatch) => {
-  try {
-    // console.log('getting stats for: ' + country);
-    const res = await axios.get(`api/data/${country}`);
-    const countryStats = res.data;
-    // countryStats.countryName = countries.find(
-    //   (country) => country.slug === countryStats.slug
-    // ).country;
-    dispatch({
-      type: STATS_LOAD,
-      payload: countryStats,
-    });
-  } catch (error) {
-    console.error(error);
-    dispatch({
-      type: STATS_FAILED,
-    });
-  }
-};
+// export const getCountryStats = ({ country }) => async (dispatch) => {
+//   try {
+//     // console.log('getting stats for: ' + country);
+//     const res = await axios.get(`api/data/${country}`);
+//     const countryStats = res.data;
+//     // countryStats.countryName = countries.find(
+//     //   (country) => country.slug === countryStats.slug
+//     // ).country;
+//     dispatch({
+//       type: STATS_LOAD,
+//       payload: countryStats,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     dispatch({
+//       type: STATS_FAILED,
+//     });
+//   }
+// };

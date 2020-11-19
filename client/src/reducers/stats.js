@@ -10,6 +10,7 @@ import {
 const initialState = {
   loaded: false,
   countries: [],
+  notAvailable: [],
   chartMode: 1,
   dataField: 1,
 };
@@ -37,7 +38,8 @@ const stats = (state = initialState, action) => {
     case MULTI_STATS_LOADED:
       return {
         ...state,
-        countries: payload,
+        notAvailable: payload.notAvailable,
+        countries: payload.countriesStats,
         loaded: true,
       };
     case STATS_LOAD:

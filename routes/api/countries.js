@@ -26,54 +26,54 @@ const addCountryFlagAndPopulation = async (country) => {
 router.get('/', async (req, res) => {
   try {
     //Check age of country list
-    let savedCountries = false;
-    let now = dayjs();
-    let age = false;
-    let updatedToday = false;
-    savedCountries = await Country.find();
+    // let savedCountries = false;
+    // let now = dayjs();
+    // let age = false;
+    // let updatedToday = false;
+    // savedCountries = await Country.find();
 
-    //Check if country list is from today or more than 24hrs old
-    if (savedCountries) {
-      age = now.diff(savedCountries[0].date, 'hours', true);
-      updatedToday = now.isSame(savedCountries[0].date, 'day');
-      console.log(
-        'Country list age: ' +
-          age.toFixed(1) +
-          'hrs. Updated today: ' +
-          updatedToday
-      );
-    }
+    // //Check if country list is from today or more than 24hrs old
+    // if (savedCountries) {
+    //   age = now.diff(savedCountries[0].date, 'hours', true);
+    //   updatedToday = now.isSame(savedCountries[0].date, 'day');
+    //   console.log(
+    //     'Country list age: ' +
+    //       age.toFixed(1) +
+    //       'hrs. Updated today: ' +
+    //       updatedToday
+    //   );
+    // }
 
-    if (!updatedToday || age >= 24) {
-      console.log('Updating country list...');
-      let availableCountries = await axios.get(
-        'https://api.covid19api.com/countries'
-      );
+    // if (!updatedToday || age >= 24) {
+    //   console.log('Updating country list...');
+    //   let availableCountries = await axios.get(
+    //     'https://api.covid19api.com/countries'
+    //   );
 
-      let countries = availableCountries.data.sort(function (a, b) {
-        return a.Country.localeCompare(b.Country);
-      });
+    //   let countries = availableCountries.data.sort(function (a, b) {
+    //     return a.Country.localeCompare(b.Country);
+    //   });
 
-      //Delete all existing entries
-      await Country.deleteMany({});
+    //   //Delete all existing entries
+    //   await Country.deleteMany({});
 
-      // Promise.all(countries.map((country) => updateCountry(country)));
-      Promise.all(countries.map((country) => saveCountry(country)));
+    //   // Promise.all(countries.map((country) => updateCountry(country)));
+    //   Promise.all(countries.map((country) => saveCountry(country)));
 
-      let response2 = await axios.get(
-        'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;flag;population'
-      );
+    //   let response2 = await axios.get(
+    //     'https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;flag;population'
+    //   );
 
-      let countryFlags = response2.data;
+    //   let countryFlags = response2.data;
 
-      Promise.all(
-        countryFlags.map((country) => {
-          addCountryFlagAndPopulation(country);
-        })
-      );
-    } else {
-      console.log('Using existing country list.');
-    }
+    //   Promise.all(
+    //     countryFlags.map((country) => {
+    //       addCountryFlagAndPopulation(country);
+    //     })
+    //   );
+    // } else {
+    //   console.log('Using existing country list.');
+    // }
 
     let stuffToSend = await Country.find();
 

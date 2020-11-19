@@ -106,6 +106,9 @@ const Charts = ({ chartMode, dataField, countries, countriesData }) => {
   return (
     <div className='Charts'>
       <ChartBlock chartData={chartData} />
+      {/* <ChartBlock chartData={chartDataTotal} mode={0} />
+      <ChartBlock chartData={chartData100k} mode={1} />
+      <ChartBlock chartData={chartDataPercentage} mode={2} /> */}
     </div>
   );
 };
@@ -133,28 +136,79 @@ const randomColor = [
   `rgba(0,255,255,${colorOpacity})`,
 ];
 
-// let dataConfirmed = countriesData.map((country) =>
-//     cumulativeErrorFix(country.data.confirmed)
-//   );
+// switch (modes[chartMode]) {
+//   case 'total':
+//     selectedData = countriesData.map((country) => ({
+//       data: country.data[fields.slug[dataField]],
+//     }));
+//     break;
 
-//   let dataActive = countriesData.map(
-//     (country) => country.data.active
-//     // cumulativeErrorFix(country.data.active)
-//   );
+//   case 'per 100k':
+//     selectedData = countriesData.map((country) => ({
+//       data: per100k(
+//         country.countrySlug,
+//         cumulativeErrorFix(country.data[fields.slug[dataField]]),
+//         countries
+//       ),
+//     }));
+//     break;
 
-//   let dataRecovered = countriesData.map(
-//     (country) => country.data.recovered
-//     // cumulativeErrorFix(country.data.recovered)
-//   );
+//   case '%':
+//     selectedData = countriesData.map((country) => ({
+//       data: percentage(
+//         country.countrySlug,
+//         cumulativeErrorFix(country.data[fields.slug[dataField]]),
+//         countries
+//       ),
+//     }));
+//     break;
 
-//   let dataDeaths = countriesData.map(
-//     (country) => country.data.deaths
-//     // cumulativeErrorFix(country.data.deaths)
-//   );
+//   default:
+//     selectedData = countriesData.map((country) => ({
+//       data: country.data[dataField],
+//     }));
+// }
 
-//   let chartData = [dataConfirmed, dataActive, dataRecovered, dataDeaths];
+// let variableData = {
+//   title: `${fields.title[dataField]} (${modes[chartMode]})`,
+//   from: formatDate(countriesData[0].from),
+//   to: formatDate(countriesData[0].to),
+//   labels: countriesData[0].data.date.map((date) => formatDate(date)),
+//   datasets: countriesData.map((country, index) => ({
+//     label: `${countryNameFromSlug(
+//       country.countrySlug,
+//       countries
+//     )} ${populationString(country.countrySlug, countries)}`,
+//     data: selectedData[index].data,
+//     backgroundColor: randomColor[index],
+//     fill: false,
+//     borderColor: randomColor[index],
+//     borderWidth: 1,
+//     pointRadius: 1,
+//   })),
+// };
 
-// data: movingAverage(
-//   cumulativeToDifference(cumulativeErrorFix(country.data.deaths)),
-//   1.5
-// ),
+// let chartData = {
+//   type: 'line',
+//   data: variableData,
+//   options: {
+//     legend: {
+//       display: true,
+//       position: 'right',
+//       labels: {
+//         boxWidth: 20,
+//       },
+//     },
+//     scales: {
+//       xAxes: [
+//         {
+//           ticks: {
+//             minRotation: 90,
+//             maxTicksLimit: 42,
+//           },
+//         },
+//       ],
+//     },
+//     maintainAspectRatio: false,
+//   },
+// };

@@ -31,34 +31,38 @@ button {
 .modeButtons {
   display: flex;
   height: 30px;
-  background-color: white;
-  border: 1px solid grey;
+  border: 2px solid grey;
   border-radius: 5px;
   margin-bottom: $spacing1;
-
-  .ModeButton {
+  .ModeButton,
+  .DataButton {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    outline: none;
+    // outline: none;
+    border: 1px solid #ccc;
     width: 100px;
     font-size: $fontButton;
     color: grey;
     &.selected {
-      background-color: $colorButton;
-      color: $colorButtonFont;
+      background-color: rgba(255, 0, 0, 0.85);
+      color: white;
+      border: 1px solid red;
     }
     &:hover {
-      color: $colorButtonFont;
+      z-index: 100;
       box-shadow: 0px 0px $buttonGlow $colorSelected;
-      background-color: $colorButton;
+      background-color: rgba(255, 0, 0, 0.85);
+      color: white;
+      border: 1px solid red;
     }
     &.first {
       border-radius: 5px 0 0 5px;
+      border-right: 0px solid #ccc;
     }
     &.center {
-      border-left: 1px solid grey;
-      border-right: 1px solid grey;
+      border-right: 0px solid #ccc;
     }
     &.last {
       border-radius: 0 5px 5px 0;

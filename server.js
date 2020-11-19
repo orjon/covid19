@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/data', require('./routes/api/data'));
+// app.use('/api/data', require('./routes/api/data'));
 app.use('/api/stats', require('./routes/api/stats'));
 app.use('/api/countries', require('./routes/api/countries'));
 

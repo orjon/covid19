@@ -1,50 +1,66 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { Line } from 'react-chartjs-2';
-import Chartjs from 'chart.js';
+import { connect } from 'react-redux';
+import { calculateChartData } from './calculateChartData';
+import { Line } from 'react-chartjs-2';
 import '../../styles/Chart.scss';
 
-const LineChart = ({ chartData }) => {
-  const chartContainer = useRef(null);
-  const [chartInstance, setChartInstance] = useState(null);
-
+const LineChart = ({ chartMode, dataField, countries, selectedCountries }) => {
+  //Get user selected Countries
   useEffect(() => {
-    if (chartContainer && chartContainer.current) {
-      const newChartInstance = new Chartjs(chartContainer.current, chartData);
-      setChartInstance(newChartInstance);
-    }
-  }, [chartContainer, chartData]);
+    console.log('lineChart state change!');
+    console.log('chartMode', chartMode);
+    console.log('dataField', dataField);
+    setChartData(
+      calculateChartData({
+        chartMode,
+        dataField,
+        countries,
+        selectedCountries,
+      })
+    );
+  }, [chartMode, dataField, countries, selectedCountries]);
+
+  const [chartData, setChartData] = useState([]);
+
+  if (chartData !== null) console.log(chartData);
 
   return (
     <div className='LineChart'>
-      <canvas ref={chartContainer} />
+      {/* {chartData !== null && ( */}
+      <Line
+        redraw
+        data={chartData}
+        options={{
+          legend: {
+            display: true,
+            position: 'right',
+            labels: {
+              boxWidth: 20,
+            },
+          },
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  minRotation: 90,
+                  maxTicksLimit: 42,
+                },
+              },
+            ],
+          },
+          maintainAspectRatio: false,
+        }}
+      />
+      {/* )} */}
     </div>
   );
 };
 
-export default LineChart;
+const mapStateToProps = (state) => ({
+  countries: state.countryList.countries,
+  selectedCountries: state.stats.countries,
+  chartMode: state.stats.chartMode,
+  dataField: state.stats.dataField,
+});
 
-//  <div className='LineChart'>
-// <Line
-//   data={chartData}
-//   options={{
-//     legend: {
-//       display: true,
-//       position: 'right',
-//       labels: {
-//         boxWidth: 20,
-//       },
-//     },
-//     scales: {
-//       xAxes: [
-//         {
-//           ticks: {
-//             minRotation: 90,
-//             maxTicksLimit: 42,
-//           },
-//         },
-//       ],
-//     },
-//     maintainAspectRatio: false,
-//   }}
-// />
-// </div>
+export default connect(mapStateToProps, {})(LineChart);

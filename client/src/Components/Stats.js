@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect } from 'react';
 import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
-import { deleteCountryStats, getCountryStats } from '../actions/stats';
+import { deleteCountryStats, getStats } from '../actions/stats';
 import { connect } from 'react-redux';
-import Charts from './Charts/Charts';
-import PropTypes from 'prop-types';
+import Chart from './Charts/Chart';
 import '../styles/Stats.scss';
 
 const Stats = ({
@@ -12,11 +11,11 @@ const Stats = ({
   stats,
   getCountries,
   deleteCountryStats,
-  getCountryStats,
+  getStats,
   currentUser,
 }) => {
   let userCountries = currentUser.countries;
-  let userCountriesValid = false;
+  let unAvailable = null;
 
   let loading =
     'Loading ' + currentUser.countries.length + ' country statistics...';
@@ -39,26 +38,15 @@ const Stats = ({
 
   //Load stats for usercountries
   useEffect(() => {
-    if (countryList.loaded) {
-      Promise.all(userCountries.map((country) => getCountryStats({ country })));
+    if (countryList.loaded && !stats.loaded) {
+      getStats({ userCountries });
     }
-  }, [countryList, userCountries, getCountryStats]);
+  }, [countryList, userCountries, getStats]);
 
-  if (stats.countries.length === userCountries.length) {
-    userCountriesValid = stats.countries.filter(
-      (country) => country.dataAvailable === true
-    );
-
-    userCountriesValid.sort(function (a, b) {
-      if (a.countrySlug < b.countrySlug) {
-        return -1;
-      }
-      if (a.countrySlug > b.countrySlug) {
-        return 1;
-      }
-      // names must be equal
-      return 0;
-    });
+  if (stats.loaded) {
+    let list = stats.notAvailable.toString();
+    console.log('list', list);
+    unAvailable = <div>* No statistics available for: {list}</div>;
   }
 
   return (
@@ -66,10 +54,10 @@ const Stats = ({
       <Nav />
       <div className='pageWrapper'>
         <div>
-          {userCountriesValid ? (
+          {stats.loaded ? (
             <Fragment>
-              <Charts countriesData={userCountriesValid} />
-              {/* <ChartBlock countriesData={userCountriesValid} /> */}
+              <Chart />
+              {unAvailable}
             </Fragment>
           ) : (
             <Fragment>{loading}</Fragment>
@@ -78,10 +66,6 @@ const Stats = ({
       </div>
     </Fragment>
   );
-};
-
-Stats.propTypes = {
-  getCountryStats: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -93,5 +77,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getCountries,
   deleteCountryStats,
-  getCountryStats,
+  getStats,
 })(Stats);

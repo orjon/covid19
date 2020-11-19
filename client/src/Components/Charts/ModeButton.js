@@ -1,21 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { setMode } from '../../actions/stats';
+import { setMeasurementMode } from '../../actions/stats';
 import '../../styles/Chart.scss';
 
-const ModeButton = ({ text, position, mode, setMode }) => {
-  const history = useHistory();
-  const changeDataMode = (newMode) => {
-    setMode(newMode);
-    history.push('/stats');
+const ModeButton = ({
+  chartMode,
+  text,
+  position,
+  mode,
+  setMeasurementMode,
+}) => {
+  const changeMode = (newMode) => {
+    setMeasurementMode(newMode);
   };
+
+  let isSelected = '';
+
+  if (chartMode === mode) {
+    isSelected = 'selected';
+  }
 
   return (
     <div
-      className={`ModeButton ${position}`}
+      className={`ModeButton ${position} ${isSelected}`}
       onClick={() => {
-        changeDataMode(mode);
+        changeMode(mode);
       }}
     >
       {text}
@@ -23,4 +32,8 @@ const ModeButton = ({ text, position, mode, setMode }) => {
   );
 };
 
-export default connect(null, { setMode })(ModeButton);
+const mapStateToProps = (state) => ({
+  chartMode: state.stats.chartMode,
+});
+
+export default connect(mapStateToProps, { setMeasurementMode })(ModeButton);

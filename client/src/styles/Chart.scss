@@ -9,6 +9,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  &.hidden {
+    display: none;
+  }
   .title {
     text-align: center;
     margin-bottom: $spacing2;
@@ -18,7 +21,7 @@
   }
   .LineChart {
     border: $devBorder solid lime;
-    height: 75vh;
+    height: 65vh;
     width: 100%;
   }
   margin-bottom: $spacing3;

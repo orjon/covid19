@@ -5,7 +5,7 @@ const dayjs = require('dayjs');
 const Country = require('../../models/Country');
 const Stats = require('../../models/Stats');
 
-// GET api/data/:country
+// GET api/data/
 // get data for country
 router.get('/:countrySlug', async (req, res) => {
   let country = req.params.countrySlug;

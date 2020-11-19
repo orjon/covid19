@@ -43,12 +43,12 @@ export const abbreviateNumber = (value) => {
 
 export const per100k = (countrySlug, dataArray, countries) => {
   let population = populationFromSlug(countrySlug, countries);
-  return dataArray.map((entry) => ((entry / population) * 100000).toFixed(0));
+  return dataArray.map((entry) => ((entry / population) * 100000).toFixed(3));
 };
 
 export const percentage = (countrySlug, dataArray, countries) => {
   let population = populationFromSlug(countrySlug, countries);
-  return dataArray.map((entry) => ((entry / population) * 100).toFixed(1));
+  return dataArray.map((entry) => ((entry / population) * 100).toFixed(6));
 };
 
 export const cumulativeToDifference = (cumulativeArray) => {
@@ -60,8 +60,8 @@ export const cumulativeToDifference = (cumulativeArray) => {
   return differenceArray;
 };
 
-export const cumulativeErrorFix = (originalArray) => {
-  originalArray.reverse();
+export const cumulativeErrorFix = async (originalArray) => {
+  await originalArray.reverse();
   let fixedArray = [];
   fixedArray.push(originalArray[0]);
   for (let i = 1; i < originalArray.length; i++) {
@@ -71,7 +71,7 @@ export const cumulativeErrorFix = (originalArray) => {
       fixedArray.push(originalArray[i]);
     }
   }
-  fixedArray.reverse();
+  await fixedArray.reverse();
   return fixedArray;
 };
 

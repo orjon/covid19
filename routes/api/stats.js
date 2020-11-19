@@ -5,7 +5,7 @@ const dayjs = require('dayjs');
 const Country = require('../../models/Country');
 const Stats = require('../../models/Stats');
 
-// GET api/data/:country
+// GET api/stats/:country
 // get data for country
 router.get('/:countrySlug', async (req, res) => {
   let country = req.params.countrySlug;
@@ -13,26 +13,19 @@ router.get('/:countrySlug', async (req, res) => {
   try {
     let existingEntry = false;
     let now = dayjs(); //current date & time
-    let age = false;
     let updatedToday = false;
 
     existingEntry = await Stats.findOne({ countrySlug: country });
 
+    //If entry exists in db, check age.
     if (existingEntry) {
-      age = now.diff(existingEntry.date, 'hours', true);
       updatedToday = now.isSame(existingEntry.date, 'day');
-      console.log(
-        country +
-          ' data age: ' +
-          age.toFixed(1) +
-          'hrs. Updated today: ' +
-          updatedToday
-      );
     } else {
       console.log('No entry found for: ' + country);
     }
 
-    if (!updatedToday || age >= 24) {
+    //If from yesterdaty or
+    if (!updatedToday) {
       const response = await axios.get(
         `https://api.covid19api.com/total/country/${country}`
       );
