@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cumulativeErrorFix } from '../utils/helpers';
 import {
   STATS_DELETE,
   MULTI_STATS_LOADED,
@@ -83,6 +84,18 @@ export const getStats = ({ userCountries }) => async (dispatch) => {
       (country) => country.dataAvailable === true
     );
 
+    countriesStats.forEach(
+      (country) =>
+        (country.data.confirmed = cumulativeErrorFix(country.data.confirmed))
+    );
+    countriesStats.forEach(
+      (country) =>
+        (country.data.deaths = cumulativeErrorFix(country.data.deaths))
+    );
+    countriesStats.forEach(
+      (country) =>
+        (country.data.recovered = cumulativeErrorFix(country.data.recovered))
+    );
     let payloadObject = {
       notAvailable: notAvailable,
       countriesStats: countriesStats,
@@ -101,24 +114,3 @@ export const getStats = ({ userCountries }) => async (dispatch) => {
     });
   }
 };
-
-//get individual country stats
-// export const getCountryStats = ({ country }) => async (dispatch) => {
-//   try {
-//     // console.log('getting stats for: ' + country);
-//     const res = await axios.get(`api/data/${country}`);
-//     const countryStats = res.data;
-//     // countryStats.countryName = countries.find(
-//     //   (country) => country.slug === countryStats.slug
-//     // ).country;
-//     dispatch({
-//       type: STATS_LOAD,
-//       payload: countryStats,
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     dispatch({
-//       type: STATS_FAILED,
-//     });
-//   }
-// };

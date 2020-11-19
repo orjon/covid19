@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
 import { deleteCountryStats, getStats } from '../actions/stats';
+import { countryNameFromSlug } from '../utils/helpers';
 import { connect } from 'react-redux';
 import Chart from './Charts/Chart';
 import '../styles/Stats.scss';
@@ -15,7 +16,7 @@ const Stats = ({
   currentUser,
 }) => {
   let userCountries = currentUser.countries;
-  let unAvailable = null;
+  let notAvailableList = null;
 
   let loading =
     'Loading ' + currentUser.countries.length + ' country statistics...';
@@ -43,10 +44,11 @@ const Stats = ({
     }
   }, [countryList, userCountries, getStats]);
 
-  if (stats.loaded) {
-    let list = stats.notAvailable.toString();
-    console.log('list', list);
-    unAvailable = <div>* No statistics available for: {list}</div>;
+  if (stats.loaded && stats.notAvailable.length > 0) {
+    let list = stats.notAvailable
+      .map((country) => countryNameFromSlug(country, countryList.countries))
+      .toString();
+    notAvailableList = <div>*No data available for: {list}</div>;
   }
 
   return (
@@ -57,7 +59,7 @@ const Stats = ({
           {stats.loaded ? (
             <Fragment>
               <Chart />
-              {unAvailable}
+              {notAvailableList && notAvailableList}
             </Fragment>
           ) : (
             <Fragment>{loading}</Fragment>

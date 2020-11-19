@@ -60,8 +60,8 @@ export const cumulativeToDifference = (cumulativeArray) => {
   return differenceArray;
 };
 
-export const cumulativeErrorFix = async (originalArray) => {
-  await originalArray.reverse();
+export const cumulativeErrorFix = (originalArray) => {
+  originalArray.reverse();
   let fixedArray = [];
   fixedArray.push(originalArray[0]);
   for (let i = 1; i < originalArray.length; i++) {
@@ -71,7 +71,7 @@ export const cumulativeErrorFix = async (originalArray) => {
       fixedArray.push(originalArray[i]);
     }
   }
-  await fixedArray.reverse();
+  fixedArray.reverse();
   return fixedArray;
 };
 
