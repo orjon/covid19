@@ -101,8 +101,6 @@ export const getStats = ({ userCountries }) => async (dispatch) => {
       countriesStats: countriesStats,
     };
 
-    console.log('getCountries', payloadObject);
-
     dispatch({
       type: MULTI_STATS_LOADED,
       payload: payloadObject,

@@ -7,9 +7,6 @@ import '../../styles/Chart.scss';
 const LineChart = ({ chartMode, dataField, countries, selectedCountries }) => {
   //Get user selected Countries
   useEffect(() => {
-    console.log('lineChart state change!');
-    console.log('chartMode', chartMode);
-    console.log('dataField', dataField);
     setChartData(
       calculateChartData({
         chartMode,
@@ -21,8 +18,6 @@ const LineChart = ({ chartMode, dataField, countries, selectedCountries }) => {
   }, [chartMode, dataField, countries, selectedCountries]);
 
   const [chartData, setChartData] = useState([]);
-
-  if (chartData !== null) console.log(chartData);
 
   return (
     <div className='LineChart'>

@@ -24,5 +24,14 @@
     height: 65vh;
     width: 100%;
   }
+  .note {
+    border: $devBorder solid red;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: $spacing3;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
   margin-bottom: $spacing3;
 }

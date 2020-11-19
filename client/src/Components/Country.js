@@ -3,21 +3,14 @@ import { default as UncheckedBox } from '@material-ui/icons/CheckBoxOutlineBlank
 import { default as CheckedBox } from '@material-ui/icons/CheckBox';
 
 const Country = ({ country, selectedCountries, listFull }) => {
-  let countryName = country.country
-    .split('(')[0]
-    .split(',')[0]
-    .replace(' and ', ' & ');
+  let countryName = country.country;
 
   let flagSource = country.flag;
   let selected = false;
 
-  if (countryName === 'ALA Aland Islands') {
-    countryName = 'Aland Islands';
-  } else if (countryName === 'Netherlands Antilles') {
+  if (countryName === 'Netherlands Antilles') {
     flagSource =
       'https://www.orjon.com/covid19/images/flag/netherlands_antilles.svg';
-  } else if (country.slug === 'korea-north') {
-    countryName = 'North Korea';
   }
 
   if (selectedCountries.includes(country.slug)) {

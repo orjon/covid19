@@ -79,8 +79,6 @@ export const calculateChartData = ({
       }));
   }
 
-  console.log('selectedData', selectedData);
-
   let chartData = {
     labels: selectedCountries[0].data.date.map((date) => formatDate(date)),
     datasets: selectedCountries.map((country, index) => ({
