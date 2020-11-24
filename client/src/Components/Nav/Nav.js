@@ -7,8 +7,8 @@ import NavBurgerMenu from './NavBurgerMenu';
 import '../../styles/Nav.scss';
 
 const Nav = ({ isHome, auth: { isAuthenticated, loading } }) => {
-  let guestLocations = ['stats', 'register', 'login'];
-  let authLocations = ['stats', 'countries', 'logout'];
+  let guestLocations = ['login'];
+  let authLocations = ['logout'];
 
   let locations = guestLocations;
   if (isAuthenticated) {

@@ -7,9 +7,12 @@ import {
   AUTH_ERROR,
   LOGOUT,
   COUNTRIES_UPDATE,
+  GUEST_COUNTRIES_UPDATE,
+  LOGIN_GUEST,
 } from '../actions/types';
 
 const initialState = {
+  guest: false,
   loaded: false,
   countries: [],
   _id: undefined,
@@ -23,6 +26,12 @@ const currentUser = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case LOGIN_GUEST:
+      return {
+        ...state,
+        guest: true,
+        loaded: true,
+      };
     case USER_LOADED:
       return {
         ...state,
@@ -33,9 +42,15 @@ const currentUser = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
+        guest: false,
         loaded: true,
       };
     case COUNTRIES_UPDATE:
+      return {
+        ...state,
+        countries: payload,
+      };
+    case GUEST_COUNTRIES_UPDATE:
       return {
         ...state,
         countries: payload,
@@ -47,8 +62,8 @@ const currentUser = (state = initialState, action) => {
       return {
         ...state,
         loaded: false,
+        guest: false,
         countries: [],
-        graphs: [],
         _id: undefined,
         name: undefined,
         email: undefined,

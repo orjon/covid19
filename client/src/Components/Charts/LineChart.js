@@ -1,52 +1,115 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { calculateChartData } from './calculateChartData';
 import { Line } from 'react-chartjs-2';
 import '../../styles/Chart.scss';
 
-const LineChart = ({ chartMode, dataField, countries, selectedCountries }) => {
+const LineChart = ({
+  chartModeData,
+  chartModeMeasure,
+  chartModeScale,
+  countries,
+  selectedCountries,
+}) => {
   //Get user selected Countries
   useEffect(() => {
     setChartData(
       calculateChartData({
-        chartMode,
-        dataField,
+        chartModeData,
+        chartModeMeasure,
+        chartModeScale,
         countries,
         selectedCountries,
       })
     );
-  }, [chartMode, dataField, countries, selectedCountries]);
+  }, [
+    chartModeData,
+    chartModeMeasure,
+    chartModeScale,
+    countries,
+    selectedCountries,
+  ]);
 
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState(null);
+
+  const chartOptionsWide = {
+    legend: {
+      display: true,
+      position: 'right',
+      labels: {
+        boxWidth: 20,
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            minRotation: 90,
+            maxTicksLimit: 40,
+          },
+        },
+      ],
+    },
+    maintainAspectRatio: false,
+  };
+
+  const chartOptionsNormal = {
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        boxWidth: 20,
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            minRotation: 90,
+            maxTicksLimit: 20,
+          },
+        },
+      ],
+    },
+    maintainAspectRatio: false,
+  };
+
+  const chartOptionsNarrow = {
+    legend: {
+      display: true,
+      position: 'bottom',
+      labels: {
+        boxWidth: 20,
+      },
+    },
+    scales: {
+      xAxes: [
+        {
+          ticks: {
+            minRotation: 90,
+            maxTicksLimit: 10,
+          },
+        },
+      ],
+    },
+    maintainAspectRatio: false,
+  };
 
   return (
     <div className='LineChart'>
-      {/* {chartData !== null && ( */}
-      <Line
-        redraw
-        data={chartData}
-        options={{
-          legend: {
-            display: true,
-            position: 'right',
-            labels: {
-              boxWidth: 20,
-            },
-          },
-          scales: {
-            xAxes: [
-              {
-                ticks: {
-                  minRotation: 90,
-                  maxTicksLimit: 42,
-                },
-              },
-            ],
-          },
-          maintainAspectRatio: false,
-        }}
-      />
-      {/* )} */}
+      {chartData !== null && (
+        <Fragment>
+          <div className='chartWide'>
+            <Line redraw data={chartData} options={chartOptionsWide} />
+          </div>
+          <div className='chartNormal'>
+            <Line redraw data={chartData} options={chartOptionsNormal} />
+          </div>
+          <div className='chartNarrow'>
+            <Line redraw data={chartData} options={chartOptionsNarrow} />
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };
@@ -54,8 +117,9 @@ const LineChart = ({ chartMode, dataField, countries, selectedCountries }) => {
 const mapStateToProps = (state) => ({
   countries: state.countryList.countries,
   selectedCountries: state.stats.countries,
-  chartMode: state.stats.chartMode,
-  dataField: state.stats.dataField,
+  chartModeData: state.stats.chartModeData,
+  chartModeMeasure: state.stats.chartModeMeasure,
+  chartModeScale: state.stats.chartModeScale,
 });
 
 export default connect(mapStateToProps, {})(LineChart);

@@ -16,14 +16,64 @@
     text-align: center;
     margin-bottom: $spacing2;
   }
-  .modeButtons {
+  .controls {
     border: $devBorder solid red;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .modeButtons {
+      border: $devBorder solid red;
+    }
+    @media only screen and (min-width: 550px) {
+      flex-direction: row;
+    }
+
+    @media only screen and (min-width: 800px) {
+      max-width: 700px;
+    }
   }
+
   .LineChart {
     border: $devBorder solid lime;
     height: 65vh;
     width: 100%;
+
+    .chartNarrow,
+    .chartNormal,
+    .chartWide {
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .chartNarrow {
+      display: block;
+    }
+
+    @media only screen and (min-width: 500px) {
+      .chartNormal {
+        display: block;
+      }
+      .chartNarrow,
+      .chartWide {
+        display: none;
+      }
+    }
+
+    @media only screen and (min-width: 1000px) {
+      .chartWide {
+        display: block;
+      }
+      .chartNormal,
+      .chartNarrow {
+        display: none;
+      }
+    }
   }
+
   .note {
     border: $devBorder solid red;
     font-size: 0.8rem;

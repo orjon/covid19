@@ -61,14 +61,14 @@ export const cumulativeToDifference = (cumulativeArray) => {
 };
 
 export const cumulativeErrorFix = (originalArray) => {
-  originalArray.reverse();
+  let reversedArray = [...originalArray].reverse();
   let fixedArray = [];
-  fixedArray.push(originalArray[0]);
-  for (let i = 1; i < originalArray.length; i++) {
-    if (originalArray[i] > fixedArray[i - 1]) {
+  fixedArray.push(reversedArray[0]);
+  for (let i = 1; i < reversedArray.length; i++) {
+    if (reversedArray[i] > fixedArray[i - 1]) {
       fixedArray.push(fixedArray[i - 1]);
     } else {
-      fixedArray.push(originalArray[i]);
+      fixedArray.push(reversedArray[i]);
     }
   }
   fixedArray.reverse();

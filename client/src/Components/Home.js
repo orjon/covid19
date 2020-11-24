@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
+import { loginGuest } from '../actions/currentUser';
 import '../styles/Home.scss';
 
-const Home = ({ countriesLoaded, getCountries }) => {
+const Home = ({ countriesLoaded, getCountries, loginGuest }) => {
   const history = useHistory();
 
   useEffect(() => {
@@ -30,9 +31,15 @@ const Home = ({ countriesLoaded, getCountries }) => {
             >
               Register
             </button>
-            {/* <button onClick={() => history.push('/guest')} className='guest'>
+            <button
+              onClick={() => {
+                loginGuest();
+                history.push('/main');
+              }}
+              className='guest'
+            >
               Guest
-            </button> */}
+            </button>
           </div>
         </div>
       </div>
@@ -44,4 +51,4 @@ const mapStateToProps = (state) => ({
   countriesLoaded: state.countryList.loaded,
 });
 
-export default connect(mapStateToProps, { getCountries })(Home);
+export default connect(mapStateToProps, { getCountries, loginGuest })(Home);

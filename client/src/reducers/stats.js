@@ -3,36 +3,44 @@ import {
   MULTI_STATS_LOADED,
   STATS_LOAD,
   STATS_FAILED,
-  FIELD_CHANGE,
-  MODE_CHANGE,
+  SCALE_CHANGE,
+  MEASURE_CHANGE,
+  DATA_CHANGE,
 } from '../actions/types';
 
 const initialState = {
   loaded: false,
   countries: [],
   notAvailable: [],
-  chartMode: 1,
-  dataField: 1,
+  chartModeMeasure: 0,
+  chartModeData: 0,
+  chartModeScale: 0,
 };
 
 const stats = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case MODE_CHANGE:
+    case MEASURE_CHANGE:
       return {
         ...state,
-        chartMode: payload,
+        chartModeMeasure: payload,
       };
-    case FIELD_CHANGE:
+    case SCALE_CHANGE:
       return {
         ...state,
-        dataField: payload,
+        chartModeScale: payload,
+      };
+    case DATA_CHANGE:
+      return {
+        ...state,
+        chartModeData: payload,
       };
     case STATS_DELETE:
       return {
         ...state,
         countries: [],
+        notAvailable: [],
         loaded: false,
       };
     case MULTI_STATS_LOADED:

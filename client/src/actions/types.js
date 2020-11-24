@@ -12,6 +12,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_GUEST = 'LOGIN_GUEST';
 
 export const LOGOUT = 'LOGOUT';
 
@@ -19,7 +20,7 @@ export const COUNTRIES_LOADED = 'COUNTRIES_LOADED';
 export const COUNTRIES_FAILED = 'COUNTRIES_FAILED';
 
 export const COUNTRIES_UPDATE = 'COUNTRIES_UPDATE';
-export const GRAPHS_UPDATE = 'GRAPHS_UPDATE';
+export const GUEST_COUNTRIES_UPDATE = 'GUEST_COUNTRIES_UPDATE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 
 export const STATS_DELETE = 'STATS_DELETE';
@@ -27,5 +28,6 @@ export const STATS_LOAD = 'STATS_LOADED';
 export const MULTI_STATS_LOADED = 'MULTI_STATS_LOADED';
 export const STATS_FAILED = 'STATS_FAILED';
 
-export const FIELD_CHANGE = 'FIELD_CHANGE';
-export const MODE_CHANGE = 'MODE_CHANGE';
+export const SCALE_CHANGE = 'SCALE_CHANGE';
+export const MEASURE_CHANGE = 'MEASURE_CHANGE';
+export const DATA_CHANGE = 'DATA_CHANGE';

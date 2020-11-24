@@ -5,17 +5,33 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
+  LOGIN_GUEST,
   LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
   COUNTRIES_UPDATE,
+  GUEST_COUNTRIES_UPDATE,
   AUTHORIZED,
   UNAUTHORIZED,
 } from './types';
 
+export const loginGuest = () => async (dispatch) => {
+  dispatch({
+    type: LOGIN_GUEST,
+  });
+};
+
+export const updateGuestCountries = (countries) => async (dispatch) => {
+  countries.sort();
+  dispatch({
+    type: GUEST_COUNTRIES_UPDATE,
+    payload: countries,
+  });
+};
+
 //Update user countries
-export const updateCountries = (countries) => async (dispatch) => {
+export const updateUserCountries = (countries) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',

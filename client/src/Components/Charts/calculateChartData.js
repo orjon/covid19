@@ -3,21 +3,13 @@ import {
   formatDate,
   cumulativeToDifference,
   cumulativeErrorFix,
-  movingAverage,
   per100k,
-  percentage,
   populationString,
 } from '../../utils/helpers';
 
-const modes = ['total', 'per 100k', '%'];
 const fields = {
-  slug: ['active', 'confirmed', 'recovered', 'deaths'],
-  title: [
-    'Active Covid-19 Cases',
-    'Confirmed Covid-19 Cases',
-    'Recovered Covid-19 Cases',
-    'Covid-19 Deaths',
-  ],
+  slug: ['confirmed', 'deaths'],
+  title: ['Confirmed Covid-19 Cases', 'Covid-19 Deaths'],
 };
 
 const colorOpacity = 1;
@@ -36,46 +28,56 @@ const randomColor = [
 ];
 
 export const calculateChartData = ({
-  chartMode,
-  dataField,
+  chartModeMeasure,
+  chartModeData,
+  chartModeScale,
   countries,
   selectedCountries,
 }) => {
   let selectedData = [];
 
-  switch (modes[chartMode]) {
-    case 'total':
+  // set chart measure mode
+  switch (chartModeMeasure) {
+    case 0:
       selectedData = selectedCountries.map((country) => ({
-        // data: cumulativeErrorFix(country.data[fields.slug[dataField]]),
-        data: country.data[fields.slug[dataField]],
+        countrySlug: country.countrySlug,
+        data: cumulativeErrorFix(country.data[fields.slug[chartModeData]]),
       }));
       break;
 
-    case 'per 100k':
+    case 1:
       selectedData = selectedCountries.map((country) => ({
-        data: per100k(
-          country.countrySlug,
-          // cumulativeErrorFix(country.data[fields.slug[dataField]]),
-          country.data[fields.slug[dataField]],
-          countries
-        ),
-      }));
-      break;
-
-    case '%':
-      selectedData = selectedCountries.map((country) => ({
-        data: percentage(
-          country.countrySlug,
-          // cumulativeErrorFix(country.data[fields.slug[dataField]]),
-          country.data[fields.slug[dataField]],
-          countries
+        countrySlug: country.countrySlug,
+        data: cumulativeToDifference(
+          cumulativeErrorFix(country.data[fields.slug[chartModeData]])
         ),
       }));
       break;
 
     default:
       selectedData = selectedCountries.map((country) => ({
-        data: country.data[fields.slug[dataField]],
+        countrySlug: country.countrySlug,
+        data: country.data[fields.slug[chartModeData]],
+      }));
+  }
+
+  // // set chart scale
+  switch (chartModeScale) {
+    case 1:
+      selectedData = selectedData.map((country) => ({
+        data: country.data,
+      }));
+      break;
+
+    case 0:
+      selectedData = selectedData.map((country) => ({
+        data: per100k(country.countrySlug, country.data, countries),
+      }));
+      break;
+
+    default:
+      selectedData = selectedData.map((country) => ({
+        data: country.data,
       }));
   }
 

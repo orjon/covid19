@@ -4,26 +4,21 @@ import { Redirect } from 'react-router-dom';
 import Nav from './Nav/Nav';
 import { setAlert } from '../actions/alerts';
 import { getCountries } from '../actions/countryList';
-import {
-  updateUserCountries,
-  updateGuestCountries,
-} from '../actions/currentUser';
+import { updateCountries } from '../actions/currentUser';
 import { countryNameFromSlug } from '../utils/helpers';
 import Country from './Country';
 import '../styles/Countries.scss';
 
 const maxSelectedCountries = 10;
 
-const Countries = ({
+const Guest = ({
   currentUser,
   countryList,
   getCountries,
-  updateUserCountries,
-  updateGuestCountries,
+  updateCountries,
   setAlert,
 }) => {
   let countries = countryList.countries;
-
   //Load countryList
   useEffect(() => {
     if (!countryList.loaded) {
@@ -34,26 +29,11 @@ const Countries = ({
 
   //Get user selected Countries
   useEffect(() => {
-    if (!currentUser.guest) {
-      console.log('Getting user countries');
-      setSelectedCountries(currentUser.countries);
-    }
-  }, []);
+    setSelectedCountries(currentUser.countries);
+  }, [currentUser]);
 
   //State to hold selected countries
-  const [selectedCountries, setSelectedCountries] = useState(
-    currentUser.countries
-  );
-
-  //Get user selected Countries
-  useEffect(() => {
-    if (!currentUser.guest) {
-      updateUserCountries(selectedCountries);
-    } else {
-      console.log('Update guest countire');
-      updateGuestCountries(selectedCountries);
-    }
-  }, [selectedCountries]);
+  const [selectedCountries, setSelectedCountries] = useState([]);
 
   let listFull = false;
 
@@ -70,7 +50,6 @@ const Countries = ({
       setSelectedCountries(
         selectedCountries.filter((country) => country !== countrySlug)
       );
-
       setAlert(
         `${countryName} removed. ${selectedCountries.length - 1}/10`,
         'success'
@@ -100,7 +79,7 @@ const Countries = ({
   };
 
   let countrySelectedList = undefined;
-  let countryCompleteList = undefined;
+  let countryUnselectedList = undefined;
 
   if (countryList.countries.length > 0) {
     countrySelectedList = countryList.countries
@@ -120,50 +99,68 @@ const Countries = ({
           </div>
         );
       });
-    countryCompleteList = countryList.countries.map((country) => {
-      return (
-        <div
-          key={country._id}
-          className='countryContainer'
-          onClick={() => toggleCountry(country.slug)}
-        >
-          <Country
-            country={country}
-            selectedCountries={selectedCountries}
-            listFull={listFull}
-          />
-        </div>
-      );
-    });
+    countryUnselectedList = countryList.countries
+      .filter((country) => !selectedCountries.includes(country.slug))
+      .map((country) => {
+        return (
+          <div
+            key={country._id}
+            className='countryContainer'
+            onClick={() => toggleCountry(country.slug)}
+          >
+            <Country
+              country={country}
+              selectedCountries={selectedCountries}
+              listFull={listFull}
+            />
+          </div>
+        );
+      });
   }
 
   return (
     <Fragment>
-      {countrySelectedList ? (
-        <form className='longForm'>
-          <div className='subheader'>
-            <h2>Selected Countries ({selectedCountries.length} of max 10):</h2>
-            {selectedCountries.length === 0 && (
-              <div className='instruction'>
-                Select up to 10 countries from the list below
-              </div>
-            )}
-          </div>
-
-          <div className='CountryList'>{countrySelectedList}</div>
-          <div className='subheader'>
-            <h2>All Countries ({countryCompleteList.length})</h2>
-          </div>
-
-          <div className='CountryList'>{countryCompleteList}</div>
-        </form>
-      ) : (
-        <form>
-          <div className='header'>
-            <h1>Loading countries...</h1>
-          </div>
-        </form>
-      )}
+      <Nav />
+      <div className='pageWrapper'>
+        <div className='Countries'>
+          {/* Selected Countries to Compare: {selectedCountries.length} */}
+        </div>
+        {countrySelectedList ? (
+          <form
+            className='longForm'
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateCountries(selectedCountries);
+              console.log('redirect!');
+              return <Redirect to='/stats' />;
+            }}
+          >
+            <div className='header'>
+              <h1>Select countries (max 10)</h1>
+            </div>
+            <div className='buttonWrapper'>
+              <button type='submit' className='center'>
+                Save
+              </button>
+            </div>
+            <h2>Selected List</h2>
+            <div className='CountryList'>{countrySelectedList}</div>
+            <h2>Unselected List</h2>
+            <div className='CountryList'>{countryUnselectedList}</div>
+            <div className='buttonWrapper'>
+              <button type='submit' className='center'>
+                Save
+              </button>
+            </div>
+          </form>
+        ) : (
+          <form>
+            <div className='header'>
+              <h1>Loading countries...</h1>
+            </div>
+          </form>
+        )}
+      </div>
     </Fragment>
   );
 };
@@ -176,6 +173,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   setAlert,
   getCountries,
-  updateUserCountries,
-  updateGuestCountries,
-})(Countries);
+  updateCountries,
+})(Guest);

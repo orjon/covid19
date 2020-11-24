@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import Nav from './Nav/Nav';
+import Countries from './Countries';
 import { getCountries } from '../actions/countryList';
 import { deleteCountryStats, getStats } from '../actions/stats';
 import { connect } from 'react-redux';
 import Chart from './Charts/Chart';
 import '../styles/Stats.scss';
 
-const Stats = ({
+const Main = ({
   countryList,
   stats,
   getCountries,
@@ -37,13 +38,13 @@ const Stats = ({
 
   //Load stats for usercountries
   useEffect(() => {
-    if (countryList.loaded && !stats.loaded) {
+    if (countryList.loaded) {
       getStats({ userCountries });
     }
   }, [countryList, userCountries, getStats]);
 
   return (
-    <Fragment>
+    <div>
       <Nav />
       <div className='pageWrapper'>
         <div>
@@ -61,8 +62,9 @@ const Stats = ({
             </div>
           )}
         </div>
+        <Countries />
       </div>
-    </Fragment>
+    </div>
   );
 };
 
@@ -76,4 +78,4 @@ export default connect(mapStateToProps, {
   getCountries,
   deleteCountryStats,
   getStats,
-})(Stats);
+})(Main);

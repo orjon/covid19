@@ -30,20 +30,18 @@ button {
 
 .modeButtons {
   display: flex;
-  height: 30px;
+  height: 25px;
   border: 2px solid grey;
   border-radius: 5px;
   margin-bottom: $spacing1;
-  .ModeButton,
-  .DataButton {
+  .ModeButton {
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    // outline: none;
     border: 1px solid #ccc;
-    width: 100px;
-    font-size: $fontButton;
+    width: 75px;
+    font-size: $fontButtonSmall;
     color: grey;
     &.selected {
       background-color: rgba(255, 0, 0, 0.85);
@@ -68,4 +66,18 @@ button {
       border-radius: 0 5px 5px 0;
     }
   }
+
+  @media only screen and (min-width: 800px) {
+    height: 30px;
+    .ModeButton {
+      width: 100px;
+      font-size: $fontButton;
+    }
+  }
+
+  // @media only screen and (min-width: 700px) {
+  //   .ModeButton {
+  //     flex-direction: row;
+  //   }
+  // }
 }

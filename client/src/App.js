@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Nav from './Components/Nav/Nav';
 import Home from './Components/Home';
-import Countries from './Components/Countries';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import Stats from './Components/Stats';
+import Main from './Components/Main';
 import './styles/App.scss';
 import Alert from './Components/Alert';
 import { loadUser } from './actions/currentUser';
@@ -29,10 +27,11 @@ const App = () => {
       <div className='App'>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/countries' component={Countries} />
+          <Route exact path='/main' component={Main} />
+          {/* <Route exact path='/countries' component={Countries} /> */}
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
-          <Route exact path='/stats' component={Stats} />
+          {/* <Route exact path='/stats' component={Stats} /> */}
         </Switch>
         <Alert />
       </div>

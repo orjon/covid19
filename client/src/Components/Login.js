@@ -50,7 +50,7 @@ const Login = ({
 
   // Redirect if logged in
   if (isLoaded) {
-    return <Redirect to='/stats' />;
+    return <Redirect to='/main' />;
   }
 
   return (

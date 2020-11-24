@@ -1,20 +1,34 @@
 import axios from 'axios';
-import { cumulativeErrorFix } from '../utils/helpers';
 import {
   STATS_DELETE,
   MULTI_STATS_LOADED,
-  STATS_LOAD,
   STATS_FAILED,
-  FIELD_CHANGE,
-  MODE_CHANGE,
+  SCALE_CHANGE,
+  MEASURE_CHANGE,
+  DATA_CHANGE,
 } from './types';
 
 //setMode
-export const setMeasurementMode = (mode) => async (dispatch) => {
+export const setMeasure = (value) => async (dispatch) => {
   try {
     dispatch({
-      type: MODE_CHANGE,
-      payload: mode,
+      type: MEASURE_CHANGE,
+      payload: value,
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: STATS_FAILED,
+    });
+  }
+};
+
+//setData
+export const setScale = (value) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SCALE_CHANGE,
+      payload: value,
     });
   } catch (error) {
     console.error(error);
@@ -25,11 +39,11 @@ export const setMeasurementMode = (mode) => async (dispatch) => {
 };
 
 //setField
-export const setDataField = (field) => async (dispatch) => {
+export const setData = (value) => async (dispatch) => {
   try {
     dispatch({
-      type: FIELD_CHANGE,
-      payload: field,
+      type: DATA_CHANGE,
+      payload: value,
     });
   } catch (error) {
     console.error(error);
@@ -84,18 +98,6 @@ export const getStats = ({ userCountries }) => async (dispatch) => {
       (country) => country.dataAvailable === true
     );
 
-    countriesStats.forEach(
-      (country) =>
-        (country.data.confirmed = cumulativeErrorFix(country.data.confirmed))
-    );
-    countriesStats.forEach(
-      (country) =>
-        (country.data.deaths = cumulativeErrorFix(country.data.deaths))
-    );
-    countriesStats.forEach(
-      (country) =>
-        (country.data.recovered = cumulativeErrorFix(country.data.recovered))
-    );
     let payloadObject = {
       notAvailable: notAvailable,
       countriesStats: countriesStats,

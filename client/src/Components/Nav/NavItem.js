@@ -7,26 +7,14 @@ import { logout } from '../../actions/currentUser';
 const NavItem = ({ to, logout }) => {
   let link = to;
 
-  if (link === 'home') {
-    link = '';
-  }
-
   if (link === 'logout') {
-    return (
-      <NavLink
-        to='/'
-        className='navItem indent10'
-        activeClassName='selected'
-        onClick={logout}
-      >
-        <div className='gap5'>{to}</div>
-      </NavLink>
-    );
+    link = '';
   }
 
   return (
     <NavLink
       exact
+      onClick={logout}
       to={`/${link}`}
       className='navItem indent10'
       activeClassName='selected'
