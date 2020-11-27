@@ -46,23 +46,22 @@ const Main = ({
   return (
     <div>
       <Nav />
-      <div className='pageWrapper'>
-        <div>
+      <div className='MainWrapper'>
+        <div className='CountriesWrapper'>
+          <Countries />
+        </div>
+
+        <div className='ChartWrapper'>
           {stats.loaded ? (
-            <Fragment>
-              <Chart />
-            </Fragment>
+            <Chart />
           ) : (
             <div className='Chart'>
-              <Fragment>
-                <div className='title'>
-                  <h1>{loading}</h1>
-                </div>
-              </Fragment>
+              <div className='title'>
+                <h1>{loading}</h1>
+              </div>
             </div>
           )}
         </div>
-        <Countries />
       </div>
     </div>
   );

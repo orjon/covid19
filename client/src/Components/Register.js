@@ -109,7 +109,13 @@ const Register = ({
                 onClick={() => history.push('/login')}
                 className='login faint'
               >
-                or Login?
+                Login
+              </button>
+              <button
+                onClick={() => history.push('/main')}
+                className='register faint'
+              >
+                Guest
               </button>
             </div>
           </form>
@@ -134,33 +140,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { setAlert, register, getCountries })(
   Register
 );
-
-// TEST submit - without redux
-// const onSubmit = async (e) => {
-//   e.preventDefault();
-//   //check passwords are the same
-//   if (password !== password2){
-//     console.log('Passwords do not match!')
-//   } else {
-//     console.log(formData)
-//     const newUser = {
-//       name: username,
-//       email,
-//       password
-//     }
-
-//     try {
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json'
-//         }
-//       }
-//       const body = JSON.stringify(newUser)
-
-//       const res = await axios.post('/api/user', body,config)
-//       console.log(res.data)
-//     } catch (error) {
-//       console.error(error.response.data)
-//     }
-//   }
-// }

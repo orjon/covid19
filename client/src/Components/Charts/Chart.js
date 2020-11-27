@@ -36,7 +36,7 @@ const Chart = ({
       .map((country) => countryNameFromSlug(country, countryList.countries))
       .toString()
       .replaceAll(',', ', ');
-    notAvailableList = <div>*Data not available for: {list}</div>;
+    notAvailableList = <div>Data not available for: {list}</div>;
   }
   return (
     <div className='Chart'>
@@ -52,8 +52,8 @@ const Chart = ({
               <ModeButton text={'cases'} position='first' mode={0} value={0} />
               <ModeButton text={'deaths'} position='last' mode={0} value={1} />
             </div>
-            <div className='modeButtons'>
-              {/* Measure mode */}
+            {/* Measure mode */}
+            {/* <div className='modeButtons'>
               <ModeButton
                 text={'cumulative'}
                 position='first'
@@ -61,7 +61,7 @@ const Chart = ({
                 value={0}
               />
               <ModeButton text={'daily'} position='last' mode={1} value={1} />
-            </div>
+            </div> */}
             <div className='modeButtons'>
               {/* Scale mode */}
               <ModeButton

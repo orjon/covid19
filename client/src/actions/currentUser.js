@@ -166,5 +166,5 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
-  dispatch(setAlert('User logged out!', 'success'));
+  // dispatch(setAlert('User logged out!', 'success'));
 };

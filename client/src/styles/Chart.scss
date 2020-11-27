@@ -19,7 +19,7 @@
   .controls {
     border: $devBorder solid red;
     width: 100%;
-    max-width: 500px;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,14 +32,18 @@
     }
 
     @media only screen and (min-width: 800px) {
-      max-width: 700px;
+      max-width: 450px;
     }
   }
 
   .LineChart {
     border: $devBorder solid lime;
-    height: 65vh;
+    height: 60vh;
     width: 100%;
+
+    @media only screen and (min-width: 750px) {
+      height: 70vh;
+    }
 
     .chartNarrow,
     .chartNormal,
@@ -81,7 +85,6 @@
     margin-top: $spacing3;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
   }
-  margin-bottom: $spacing3;
 }

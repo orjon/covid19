@@ -2,6 +2,11 @@
 @import 'Section.scss';
 @import 'Form.scss';
 
+.bottom {
+  height: 100%;
+  overflow: scroll;
+}
+
 .CountryList {
   border: $devBorder solid magenta;
   width: 100%;
@@ -10,7 +15,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-column-gap: $spacing1;
-  grid-row-gap: $spacing2;
 
   .countryContainer {
     display: flex;

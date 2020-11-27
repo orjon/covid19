@@ -88,7 +88,13 @@ const Login = ({
                 onClick={() => history.push('/register')}
                 className='register faint'
               >
-                or Register?
+                Register
+              </button>
+              <button
+                onClick={() => history.push('/main')}
+                className='register faint'
+              >
+                Guest
               </button>
             </div>
           </form>
