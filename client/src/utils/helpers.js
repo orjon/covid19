@@ -43,7 +43,7 @@ export const abbreviateNumber = (value) => {
 
 export const per100k = (countrySlug, dataArray, countries) => {
   let population = populationFromSlug(countrySlug, countries);
-  return dataArray.map((entry) => ((entry / population) * 100000).toFixed(3));
+  return dataArray.map((entry) => ((entry / population) * 100000).toFixed(1));
 };
 
 export const percentage = (countrySlug, dataArray, countries) => {
