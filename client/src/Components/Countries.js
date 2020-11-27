@@ -37,9 +37,11 @@ const Countries = ({
       setSelectedCountries(currentUser.countries);
     } else if (countryList.loaded && currentUser.guest) {
       let guestArray = [];
-      for (let i = 0; i < 6; i++) {
+      while (guestArray.length < 5) {
         let rand = Math.floor(Math.random() * countryList.countries.length);
-        guestArray.push(countryList.countries[rand].slug);
+        if (!guestArray.includes(countryList.countries[rand].slug)) {
+          guestArray.push(countryList.countries[rand].slug);
+        }
       }
       setSelectedCountries(guestArray.sort());
     }
