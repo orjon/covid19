@@ -14,9 +14,10 @@ export const getCountries = () => async (dispatch) => {
         .split(',')[0]
         .replace(' and ', ' & ')
         .trim();
+      country.slug = country.slug.replaceAll('é', 'e');
     });
 
-    countries.forEach((country, index) => {
+    countries.forEach((country) => {
       if (country.country === 'ALA Aland Islands') {
         country.country = 'Aland Islands';
       } else if (country.slug === 'korea-north') {

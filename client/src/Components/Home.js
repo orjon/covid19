@@ -22,15 +22,6 @@ const Home = ({ countriesLoaded, getCountries, loginGuest }) => {
       <div className='pageWrapper'>
         <div className='Home'>
           <div className='buttons'>
-            <button onClick={() => history.push('/login')} className='login'>
-              Login
-            </button>
-            <button
-              onClick={() => history.push('/register')}
-              className='register'
-            >
-              Register
-            </button>
             <button
               onClick={() => {
                 loginGuest();
@@ -39,6 +30,15 @@ const Home = ({ countriesLoaded, getCountries, loginGuest }) => {
               className='guest'
             >
               Guest
+            </button>
+            <button
+              onClick={() => history.push('/register')}
+              className='register'
+            >
+              Register
+            </button>
+            <button onClick={() => history.push('/login')} className='login'>
+              Login
             </button>
           </div>
         </div>

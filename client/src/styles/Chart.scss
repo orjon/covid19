@@ -19,9 +19,9 @@
   .controls {
     border: $devBorder solid red;
     width: 100%;
-    max-width: 350px;
+    max-width: 325px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     .modeButtons {
@@ -38,7 +38,7 @@
 
   .LineChart {
     border: $devBorder solid lime;
-    height: 60vh;
+    height: 40vh;
     width: 100%;
 
     @media only screen and (min-width: 750px) {
@@ -82,7 +82,7 @@
     border: $devBorder solid red;
     font-size: 0.8rem;
     color: #555;
-    margin-top: $spacing3;
+    margin-top: $spacing1;
     width: 100%;
     display: flex;
     justify-content: center;

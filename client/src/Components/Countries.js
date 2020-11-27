@@ -6,7 +6,7 @@ import {
   updateUserCountries,
   updateGuestCountries,
 } from '../actions/currentUser';
-import { countryNameFromSlug } from '../utils/helpers';
+// import { countryNameFromSlug } from '../utils/helpers';
 import Country from './Country';
 import '../styles/Countries.scss';
 
@@ -20,7 +20,7 @@ const Countries = ({
   updateGuestCountries,
   setAlert,
 }) => {
-  let countries = countryList.countries;
+  // let countries = countryList.countries;
 
   //Load countryList
   useEffect(() => {
@@ -37,7 +37,7 @@ const Countries = ({
       setSelectedCountries(currentUser.countries);
     } else if (countryList.loaded && currentUser.guest) {
       let guestArray = [];
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 6; i++) {
         let rand = Math.floor(Math.random() * countryList.countries.length);
         guestArray.push(countryList.countries[rand].slug);
       }
@@ -55,7 +55,6 @@ const Countries = ({
     if (!currentUser.guest) {
       updateUserCountries(selectedCountries);
     } else {
-      console.log('Update guest countire');
       updateGuestCountries(selectedCountries);
     }
   }, [selectedCountries]);

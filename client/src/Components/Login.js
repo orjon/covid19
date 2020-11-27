@@ -4,7 +4,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
-import { login } from '../actions/currentUser';
+import { login, loginGuest } from '../actions/currentUser';
 import { setAlert } from '../actions/alerts';
 import '../styles/Login.scss';
 
@@ -15,6 +15,7 @@ const Login = ({
   getCountries,
   setAlert,
   isLoaded,
+  loginGuest,
 }) => {
   const history = useHistory();
   //Get country list if not loaded already
@@ -83,15 +84,22 @@ const Login = ({
               />
             </div>
             <div className='buttonWrapper'>
-              <button className='login'>Login</button>
+              <button type='submit' className='login'>
+                Login
+              </button>
               <button
+                type='button'
                 onClick={() => history.push('/register')}
                 className='register faint'
               >
                 Register
               </button>
               <button
-                onClick={() => history.push('/main')}
+                type='button'
+                onClick={() => {
+                  loginGuest();
+                  history.push('/main');
+                }}
                 className='register faint'
               >
                 Guest
@@ -116,6 +124,9 @@ const mapStateToProps = (state) => ({
   countriesLoaded: state.countryList.loaded,
 });
 
-export default connect(mapStateToProps, { setAlert, login, getCountries })(
-  Login
-);
+export default connect(mapStateToProps, {
+  setAlert,
+  login,
+  getCountries,
+  loginGuest,
+})(Login);

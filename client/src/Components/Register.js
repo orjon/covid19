@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
 import { setAlert } from '../actions/alerts';
-import { register } from '../actions/currentUser';
+import { register, loginGuest } from '../actions/currentUser';
 
 import '../styles/Login.scss';
 
@@ -15,6 +15,7 @@ const Register = ({
   isAuthenticated,
   countriesLoaded,
   getCountries,
+  loginGuest,
 }) => {
   const history = useHistory();
   //Get country list if not loaded already
@@ -106,13 +107,18 @@ const Register = ({
                 Register
               </button>
               <button
+                type='button'
                 onClick={() => history.push('/login')}
                 className='login faint'
               >
                 Login
               </button>
               <button
-                onClick={() => history.push('/main')}
+                type='button'
+                onClick={() => {
+                  loginGuest();
+                  history.push('/main');
+                }}
                 className='register faint'
               >
                 Guest
@@ -137,6 +143,9 @@ const mapStateToProps = (state) => ({
 });
 
 // connect needs any state and actions
-export default connect(mapStateToProps, { setAlert, register, getCountries })(
-  Register
-);
+export default connect(mapStateToProps, {
+  setAlert,
+  register,
+  getCountries,
+  loginGuest,
+})(Register);
