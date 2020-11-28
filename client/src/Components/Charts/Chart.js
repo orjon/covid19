@@ -13,11 +13,11 @@ const Chart = ({
   stats,
   countryList,
 }) => {
-  const modeScale = ['per 100k', 'total'];
+  const modeScale = ['per\u00A0100k', 'total'];
   const modeMeasure = ['Cumulative', 'Daily'];
   const modeData = {
     slug: ['confirmed', 'deaths'],
-    title: ['Confirmed Covid-19 Cases', 'Covid-19 Deaths'],
+    title: ['Confirmed\u00A0Covid-19\u00A0Cases', 'Covid-19\u00A0Deaths'],
   };
 
   let chartTitle = 'Title';
@@ -26,7 +26,7 @@ const Chart = ({
 
   let notAvailableList = null;
   if (selectedCountries.length > 0) {
-    chartTitle = `${modeData.title[chartModeData]} (${modeMeasure[chartModeMeasure]} ${modeScale[chartModeScale]})`;
+    chartTitle = `${modeData.title[chartModeData]} (${modeMeasure[chartModeMeasure]}\u00A0${modeScale[chartModeScale]})`;
     chartFrom = formatDate(selectedCountries[0].from);
     chartTo = formatDate(selectedCountries[0].to);
   }

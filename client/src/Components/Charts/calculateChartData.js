@@ -9,7 +9,6 @@ import {
 
 const fields = {
   slug: ['confirmed', 'deaths'],
-  title: ['Confirmed Covid-19 Cases', 'Covid-19 Deaths'],
 };
 
 const colorOpacity = 1;

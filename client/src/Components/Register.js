@@ -50,7 +50,7 @@ const Register = ({
 
   // Redirect if logged in
   if (isAuthenticated) {
-    return <Redirect to='/countries' />;
+    return <Redirect to='/main' />;
   }
 
   return (
