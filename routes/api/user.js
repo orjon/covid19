@@ -50,7 +50,7 @@ router.post(
       'password',
       'Please enter a password with 6 or more characters'
     ).isLength({ min: 6 }),
-    check('email', 'Please enter a valid email').isEmail(),
+    // check('email', 'Please enter a valid email').isEmail(),
     check('name', 'Name is required').not().isEmpty(),
   ],
   async (req, res) => {
@@ -59,20 +59,21 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    // const { name, email, password } = req.body;
+    const { name, password } = req.body;
 
     try {
       // See if user exists
-      let user = await User.findOne({ email: email });
+      let user = await User.findOne({ name: name });
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Email already registered!' }] });
+          .json({ errors: [{ msg: 'Name is already registered!' }] });
       }
 
       user = new User({
         name,
-        email,
+        // email,
         password,
       });
 

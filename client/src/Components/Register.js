@@ -28,12 +28,12 @@ const Register = ({
 
   const [formData, setFormData] = useState({
     username: '',
-    email: '',
+    // email: '',
     password: '',
     password2: '',
   });
 
-  const { username, email, password, password2 } = formData;
+  const { username, password, password2 } = formData;
 
   const fieldChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,7 +44,7 @@ const Register = ({
     if (password !== password2) {
       setAlert('Passwords do not match!', 'warning');
     } else {
-      register({ name: username, email, password });
+      register({ name: username, password });
     }
   };
 
@@ -72,7 +72,7 @@ const Register = ({
                 placeholder='user name'
               />
             </div>
-            <div className='field email'>
+            {/* <div className='field email'>
               <input
                 id='email'
                 name='email'
@@ -81,7 +81,7 @@ const Register = ({
                 type='email'
                 placeholder='email address'
               />
-            </div>
+            </div> */}
             <div className='field password'>
               <input
                 id='password'
