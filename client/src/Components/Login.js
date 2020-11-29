@@ -58,7 +58,7 @@ const Login = ({
     <Fragment>
       <Nav isHome='true' />
       <div className='pageWrapper'>
-        <section className='Login'>
+        <div className='Login'>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='title'>
               <h1>Login</h1>
@@ -106,7 +106,7 @@ const Login = ({
               </button>
             </div>
           </form>
-        </section>
+        </div>
       </div>
     </Fragment>
   );

@@ -36,10 +36,17 @@ const Chart = ({
       .map((country) => countryNameFromSlug(country, countryList.countries))
       .toString()
       .replaceAll(',', ', ');
-    notAvailableList = <div>Data not available for: {list}</div>;
+    notAvailableList = <div>No data currently available for: {list}</div>;
   }
   return (
     <div className='Chart'>
+      {selectedCountries.length === 0 && (
+        <div className='title'>
+          <h1>Select countries to see Covid-19 statistics</h1>
+          {notAvailableList && <div>{notAvailableList}</div>}
+        </div>
+      )}
+
       {selectedCountries.length > 0 && (
         <Fragment>
           <div className='title'>
