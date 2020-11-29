@@ -6,7 +6,6 @@ import Nav from './Nav/Nav';
 import { getCountries } from '../actions/countryList';
 import { setAlert } from '../actions/alerts';
 import { register, loginGuest } from '../actions/currentUser';
-
 import '../styles/Login.scss';
 
 const Register = ({
@@ -28,7 +27,6 @@ const Register = ({
 
   const [formData, setFormData] = useState({
     username: '',
-    // email: '',
     password: '',
     password2: '',
   });
@@ -57,7 +55,7 @@ const Register = ({
     <Fragment>
       <Nav isHome='true' />
       <div className='pageWrapper'>
-        <section className='Register'>
+        <div className='Register'>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='title'>
               <h1>Register new user</h1>
@@ -72,16 +70,6 @@ const Register = ({
                 placeholder='user name'
               />
             </div>
-            {/* <div className='field email'>
-              <input
-                id='email'
-                name='email'
-                value={email}
-                onChange={(e) => fieldChange(e)}
-                type='email'
-                placeholder='email address'
-              />
-            </div> */}
             <div className='field password'>
               <input
                 id='password'
@@ -125,7 +113,7 @@ const Register = ({
               </button>
             </div>
           </form>
-        </section>
+        </div>
       </div>
     </Fragment>
   );

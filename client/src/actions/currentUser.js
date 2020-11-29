@@ -4,7 +4,6 @@ import setAuthToken from '../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  LOGIN_SUCCESS,
   LOGIN_GUEST,
   LOGIN_FAIL,
   USER_LOADED,
@@ -41,7 +40,6 @@ export const updateUserCountries = (countries) => async (dispatch) => {
   countries.sort();
 
   const body = JSON.stringify({ countries });
-  console.log('json:', body);
 
   try {
     const res = await axios.post('/api/user/countries', body, config);
@@ -67,7 +65,6 @@ export const loadUser = () => async (dispatch) => {
   // make request
   try {
     const res = await axios.get('/api/user');
-    // console.log(res.data);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -122,14 +119,14 @@ export const register = ({ name, password }) => async (dispatch) => {
 };
 
 // Login user
-export const login = (email, password) => async (dispatch) => {
+export const login = (name, password) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
-  const body = JSON.stringify({ email, password });
+  const body = JSON.stringify({ name, password });
 
   try {
     const res = await axios.post('/api/auth', body, config);
@@ -166,5 +163,4 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
-  // dispatch(setAlert('User logged out!', 'success'));
 };

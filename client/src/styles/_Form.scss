@@ -6,10 +6,6 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: $navHeight + $spacing1;
-  // &.longForm {
-  //   margin-bottom: $spacing3 * 2;
-  // }
 
   .title {
     width: 100%;
@@ -43,7 +39,7 @@ form {
     width: 100%;
     max-width: 350px;
     border: $devBorder solid lime;
-    margin: $spacing1 0;
+    margin-top: $spacing1;
     display: flex;
     justify-content: space-between;
     .center {

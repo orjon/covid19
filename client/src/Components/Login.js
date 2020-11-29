@@ -27,25 +27,25 @@ const Login = ({
   }, [getCountries, countriesLoaded]);
 
   const [formData, setFormData] = useState({
-    email: '',
+    name: '',
     password: '',
   });
 
-  const { email, password } = formData;
+  const { name, password } = formData;
 
   const fieldChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email === '' && password === '') {
-      setAlert('Please enter email and password!', 'warning');
-    } else if (email === '') {
-      setAlert('Please enter email!', 'warning');
+    if (name === '' && password === '') {
+      setAlert('Please enter user name & password!', 'warning');
+    } else if (name === '') {
+      setAlert('Please enter user name!', 'warning');
     } else if (password === '') {
       setAlert('Please enter password!', 'warning');
     } else {
-      login(email, password);
+      login(name, password);
     }
   };
 
@@ -58,19 +58,19 @@ const Login = ({
     <Fragment>
       <Nav isHome='true' />
       <div className='pageWrapper'>
-        <section className='Login'>
+        <div className='Login'>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='title'>
               <h1>Login</h1>
             </div>
-            <div className='field email'>
+            <div className='field username'>
               <input
-                id='email'
-                name='email'
-                value={email}
+                id='name'
+                name='name'
+                value={name}
                 onChange={(e) => fieldChange(e)}
-                type='email'
-                placeholder='email address'
+                type='text'
+                placeholder='user name'
               />
             </div>
             <div className='field password'>
@@ -106,7 +106,7 @@ const Login = ({
               </button>
             </div>
           </form>
-        </section>
+        </div>
       </div>
     </Fragment>
   );

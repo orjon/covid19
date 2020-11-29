@@ -1,2 +1,21 @@
 @import 'Variables.scss';
 @import 'Form.scss';
+
+.Login,
+.Register {
+  position: relative;
+  background: url('../images/coronaHeroImage.jpg') no-repeat center center/cover;
+  height: 100vh;
+  margin: -$spacing3;
+  margin-top: -($navHeight + $spacing3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  form {
+    box-shadow: 0px 0px $buttonGlow $colorNavShadow;
+    border-radius: $spacing2;
+    max-width: 370px;
+    padding: $spacing2;
+    background-color: rgba(2455, 255, 255, 0.75);
+  }
+}

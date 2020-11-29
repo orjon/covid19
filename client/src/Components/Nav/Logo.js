@@ -6,16 +6,16 @@ import '../../styles/Logo.scss';
 const Logo = () => {
   return (
     <div className='Logo'>
-      {/* <NavLink to='/' activeClassName='selected'> */}
-      <div className='flexRow center'>
-        <img
-          className='LogoImage'
-          src={LogoImage}
-          alt='Covid19 Tracker App logo'
-        />
-        <div className='LogoText'>Covid19 Tracker</div>
-      </div>
-      {/* </NavLink> */}
+      <NavLink to='/' activeClassName='selected'>
+        <div className='flexRow center'>
+          <img
+            className='LogoImage'
+            src={LogoImage}
+            alt='Covid19 Tracker App logo'
+          />
+          <div className='LogoText'>Covid19 Tracker</div>
+        </div>
+      </NavLink>
     </div>
   );
 };
