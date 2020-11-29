@@ -57,7 +57,7 @@ const Register = ({
     <Fragment>
       <Nav isHome='true' />
       <div className='pageWrapper'>
-        <section className='Register'>
+        <div className='Register'>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='title'>
               <h1>Register new user</h1>
@@ -125,7 +125,7 @@ const Register = ({
               </button>
             </div>
           </form>
-        </section>
+        </div>
       </div>
     </Fragment>
   );
