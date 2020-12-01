@@ -13,7 +13,7 @@ const config = require('config');
 router.post(
   '/',
   [
-    check('email', 'Please enter a valid email').isEmail(),
+    check('name', 'Name is required').not().isEmpty(),
     check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
@@ -22,11 +22,11 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { name, password } = req.body;
 
     try {
       // See if user exists
-      let user = await User.findOne({ email: email });
+      let user = await User.findOne({ name: name });
 
       if (!user) {
         return res

@@ -27,25 +27,25 @@ const Login = ({
   }, [getCountries, countriesLoaded]);
 
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   const fieldChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email === '' && password === '') {
-      setAlert('Please enter email and password!', 'warning');
-    } else if (email === '') {
-      setAlert('Please enter email!', 'warning');
+    if (username === '' && password === '') {
+      setAlert('Please enter user name and password!', 'warning');
+    } else if (username === '') {
+      setAlert('Please enter user name!', 'warning');
     } else if (password === '') {
       setAlert('Please enter password!', 'warning');
     } else {
-      login(email, password);
+      login({ name: username, password });
     }
   };
 
@@ -63,14 +63,14 @@ const Login = ({
             <div className='title'>
               <h1>Login</h1>
             </div>
-            <div className='field email'>
+            <div className='field username'>
               <input
-                id='email'
-                name='email'
-                value={email}
+                id='username'
+                name='username'
+                value={username}
                 onChange={(e) => fieldChange(e)}
-                type='email'
-                placeholder='email address'
+                type='text'
+                placeholder='username'
               />
             </div>
             <div className='field password'>

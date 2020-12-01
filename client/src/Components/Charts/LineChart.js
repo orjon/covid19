@@ -32,19 +32,6 @@ const LineChart = ({
 
   const [chartData, setChartData] = useState(null);
 
-  // //  legend: {
-  //     onHover: function(e) {
-  //        e.target.style.cursor = 'pointer';
-  //     }
-  // //  },
-  //  hover: {
-  //     onHover: function(e) {
-  //        var point = this.getElementAtEvent(e);
-  //        if (point.length) e.target.style.cursor = 'pointer';
-  //        else e.target.style.cursor = 'default';
-  //     }
-  //  }
-
   const chartOptionsWide = {
     legend: {
       onHover: function (e) {

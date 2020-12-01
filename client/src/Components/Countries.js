@@ -6,7 +6,6 @@ import {
   updateUserCountries,
   updateGuestCountries,
 } from '../actions/currentUser';
-// import { countryNameFromSlug } from '../utils/helpers';
 import Country from './Country';
 import '../styles/Countries.scss';
 
@@ -20,8 +19,6 @@ const Countries = ({
   updateGuestCountries,
   setAlert,
 }) => {
-  // let countries = countryList.countries;
-
   //Load countryList
   useEffect(() => {
     if (!countryList.loaded) {
@@ -36,7 +33,7 @@ const Countries = ({
       console.log('Getting user countries');
       setSelectedCountries(currentUser.countries);
     } else if (countryList.loaded && currentUser.guest) {
-      let guestArray = [];
+      let guestArray = ['united-kingdom'];
       while (guestArray.length < 5) {
         let rand = Math.floor(Math.random() * countryList.countries.length);
         if (!guestArray.includes(countryList.countries[rand].slug)) {
@@ -70,33 +67,13 @@ const Countries = ({
   }
 
   const toggleCountry = (countrySlug) => {
-    // let countryName = countryNameFromSlug(countrySlug, countries);
     // Remove if already in list
     if (selectedCountries.includes(countrySlug)) {
       setSelectedCountries(
         selectedCountries.filter((country) => country !== countrySlug)
       );
-
-      // setAlert(
-      //   `${countryName} removed. ${selectedCountries.length - 1}/10`,
-      //   'success'
-      // );
-      // Add to list if total does not exceed 10
     } else if (!listFull) {
       setSelectedCountries([...selectedCountries, countrySlug]);
-      // if (selectedCountries.length + 1 === 10) {
-      //   setAlert(
-      //     `${countryName} added. Maximum reached: ${
-      //       selectedCountries.length + 1
-      //     }/10`,
-      //     'warning'
-      //   );
-      // } else {
-      //   setAlert(
-      //     `${countryName} added. ${selectedCountries.length + 1}/10`,
-      //     'success'
-      //   );
-      // }
     } else {
       setAlert(
         `Maximum countries reached. ${selectedCountries.length}/10`,

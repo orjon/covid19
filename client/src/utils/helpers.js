@@ -55,7 +55,11 @@ export const cumulativeToDifference = (cumulativeArray) => {
   let differenceArray = [];
   differenceArray.push(cumulativeArray[0]);
   for (let i = 1; i < cumulativeArray.length; i++) {
-    differenceArray.push(cumulativeArray[i] - cumulativeArray[i - 1]);
+    let difference = cumulativeArray[i] - cumulativeArray[i - 1];
+    if (difference < 0) {
+      difference = 0;
+    }
+    differenceArray.push(difference);
   }
   return differenceArray;
 };

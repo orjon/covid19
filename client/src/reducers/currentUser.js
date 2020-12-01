@@ -17,7 +17,6 @@ const initialState = {
   countries: [],
   _id: undefined,
   name: undefined,
-  email: undefined,
   date: undefined,
   __v: undefined,
 };
@@ -66,7 +65,6 @@ const currentUser = (state = initialState, action) => {
         countries: [],
         _id: undefined,
         name: undefined,
-        email: undefined,
         date: undefined,
         __v: undefined,
       };

@@ -35,10 +35,7 @@ const Home = ({ countriesLoaded, getCountries, loginGuest }) => {
               onClick={() => history.push('/register')}
               className='register'
             >
-              Register
-            </button>
-            <button onClick={() => history.push('/login')} className='login'>
-              Login
+              Register/Login
             </button>
           </div>
         </div>
