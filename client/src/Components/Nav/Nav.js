@@ -6,7 +6,7 @@ import NavItem from './NavItem';
 import NavBurgerMenu from './NavBurgerMenu';
 import '../../styles/Nav.scss';
 
-const Nav = ({ isHome, auth: { isAuthenticated, loading } }) => {
+const Nav = ({ isHome, auth: { isAuthenticated } }) => {
   let guestLocations = ['login'];
   let authLocations = ['logout'];
 

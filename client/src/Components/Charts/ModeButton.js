@@ -26,6 +26,8 @@ const ModeButton = ({
       case 2:
         setScale(value);
         break;
+      default:
+        setData(value);
     }
   };
 

@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/currentUser';
 
-const NavItem = ({ to, logout }) => {
+const NavItem = ({ to, logout, name }) => {
   let link = to;
+  let text = 'login/register';
 
   if (link === 'logout') {
     link = '';
+    text = `logout ${name}`;
   }
 
   return (
@@ -19,7 +21,7 @@ const NavItem = ({ to, logout }) => {
       className='navItem indent10'
       activeClassName='selected'
     >
-      <div className='gap5'>{to}</div>
+      <div className='gap5'>{text}</div>
     </NavLink>
   );
 };
@@ -28,6 +30,8 @@ NavItem.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-export default connect(null, { logout })(NavItem);
+const mapStateToProps = (state) => ({
+  name: state.currentUser.name,
+});
 
-// About NavLink:  https://medium.com/swlh/using-react-router-navlink-to-specify-the-active-element-in-a-navigation-bar-38700ffd4900
+export default connect(mapStateToProps, { logout })(NavItem);
