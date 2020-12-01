@@ -25,7 +25,7 @@ export const abbreviateNumber = (value) => {
     var shortValue = '';
     for (var precision = 2; precision >= 1; precision--) {
       shortValue = parseFloat(
-        (suffixNum != 0
+        (suffixNum !== 0
           ? value / Math.pow(1000, suffixNum)
           : value
         ).toPrecision(precision)
@@ -35,7 +35,7 @@ export const abbreviateNumber = (value) => {
         break;
       }
     }
-    if (shortValue % 1 != 0) shortValue = shortValue.toFixed(1);
+    if (shortValue % 1 !== 0) shortValue = shortValue.toFixed(1);
     newValue = shortValue + suffixes[suffixNum];
   }
   return newValue;
@@ -89,11 +89,11 @@ export const cumulativeErrorFix = (originalArray) => {
  */
 export const movingAverage = (array, count, qualifier) => {
   // calculate average for subarray
-  var avg = function (array, qualifier) {
-    var sum = 0,
+  let avg = function (array, qualifier) {
+    let sum = 0,
       count = 0,
       val;
-    for (var i in array) {
+    for (let i in array) {
       val = array[i];
       if (!qualifier || qualifier(val)) {
         sum += val;
@@ -104,15 +104,15 @@ export const movingAverage = (array, count, qualifier) => {
     return sum / count;
   };
 
-  var result = [],
+  let result = [],
     val;
 
   // pad beginning of result with null values
-  for (var i = 0; i < count - 1; i++) result.push(null);
+  for (let i = 0; i < count - 1; i++) result.push(null);
 
   // calculate average for each subarray and add to result
-  for (var i = 0, len = array.length - count; i <= len; i++) {
-    val = avg(array.slice(i, i + count), qualifier);
+  for (let j = 0, len = array.length - count; j <= len; j++) {
+    val = avg(array.slice(j, j + count), qualifier);
     if (isNaN(val)) result.push(null);
     else result.push(val);
   }
