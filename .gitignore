@@ -1,4 +1,5 @@
 node_modules/
 config/default.json
 source/
-server/config/default.json
+/server/config/default.json
+/server/config/production.json
