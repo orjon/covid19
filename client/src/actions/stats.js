@@ -70,7 +70,7 @@ export const deleteCountryStats = () => async (dispatch) => {
 //get all selected country stats
 export const getStats = ({ userCountries }) => async (dispatch) => {
   const getCountryStats = async (country) => {
-    const res = await axios.get(`api/stats/${country}`);
+    const res = await axios.get(`/covidapi/stats/${country}`);
     return res.data;
   };
 

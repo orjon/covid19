@@ -28,10 +28,8 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/main' component={Main} />
-          {/* <Route exact path='/countries' component={Countries} /> */}
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
-          {/* <Route exact path='/stats' component={Stats} /> */}
         </Switch>
         <Alert />
       </div>

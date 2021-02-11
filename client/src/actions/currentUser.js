@@ -43,7 +43,7 @@ export const updateUserCountries = (countries) => async (dispatch) => {
   const body = JSON.stringify({ countries });
 
   try {
-    const res = await axios.post('/api/user/countries', body, config);
+    const res = await axios.post('/covidapi/user/countries', body, config);
     dispatch({
       type: COUNTRIES_UPDATE,
       payload: res.data,
@@ -64,7 +64,7 @@ export const loadUser = () => async (dispatch) => {
   } else return;
   // make request
   try {
-    const res = await axios.get('/api/user');
+    const res = await axios.get('/covidapi/user');
     // console.log(res.data);
     dispatch({
       type: USER_LOADED,
@@ -93,7 +93,7 @@ export const register = ({ name, password }) => async (dispatch) => {
   const body = JSON.stringify({ name, password });
 
   try {
-    const res = await axios.post('/api/user', body, config);
+    const res = await axios.post('/covidapi/user', body, config);
     dispatch({
       type: REGISTER_SUCCESS,
     });
@@ -130,7 +130,7 @@ export const login = ({ name, password }) => async (dispatch) => {
   const body = JSON.stringify({ name, password });
 
   try {
-    const res = await axios.post('/api/auth', body, config);
+    const res = await axios.post('/covidapi/auth', body, config);
     // dispatch({
     //   type: LOGIN_SUCCESS,
     // });
