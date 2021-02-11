@@ -12,10 +12,10 @@ app.use(express.json({ extended: false }));
 
 //define routes:
 
-app.use('/api/user', require('./routes/api/user'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/stats', require('./routes/api/stats'));
-app.use('/api/countries', require('./routes/api/countries'));
+app.use('/covidapi/user', require('./routes/api/user'));
+app.use('/covidapi/auth', require('./routes/api/auth'));
+app.use('/covidapi/stats', require('./routes/api/stats'));
+app.use('/covidapi/countries', require('./routes/api/countries'));
 
 // //Serve static assests in production
 // if (process.env.NODE_ENV === 'production') {
@@ -28,10 +28,10 @@ app.use('/api/countries', require('./routes/api/countries'));
 // }
 
 //Serve static assests
-app.use(express.static('client/build'));
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
+// app.use(express.static('client/build'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+// });
 
 const PORT = process.env.PORT || 5002;
 

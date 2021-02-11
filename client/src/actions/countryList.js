@@ -4,7 +4,7 @@ import { COUNTRIES_LOADED, COUNTRIES_FAILED } from './types';
 //get country list
 export const getCountries = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/countries');
+    const res = await axios.get('/covidapi/countries');
     console.log('Got ' + res.data.length + ' countries.');
     const countries = res.data;
 
